@@ -1,0 +1,21 @@
+{
+  "name": "package.json",
+  "version": "1.0.0",
+  "description": "Package file for backend CarMatch",
+  "main": "console.js",
+  "scripts": {
+    "test": "{{ run command to compress files }}"
+  },
+  "repository": {
+    "type": "git",
+    "url": "\u001b[A\u001b[A\u001b[B\u001b[B"
+  },
+  "author": "Koen Dekker",
+  "license": "ISC",
+  "dependencies": {
+    "camelcase": "^7.0.1",
+    "express": "^4.18.2",
+    "lodash": "^4.17.21",
+    "repeat-string": "^1.6.1"
+  }
+}
