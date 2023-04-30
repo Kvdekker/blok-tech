@@ -1,10 +1,30 @@
-const express = require('express');
-const app = express();
+const express = require('express')
+const app = express()
+const path = require('path');
 
-app.listen(3000, () => {
-  console.log('Server is listening on port 3000');
-});
+
+
+const ejs = require('ejs')
+
+const compression = require('compression')
+
+
+
+app.use(compression())
+
+// Weergavemap
+app.set('views', 'assets/views')
+// Weergave engine
+app.set('view engine', 'ejs')
+
+
 
 app.get('/', (req, res) => {
-  res.send('CarMatch! Find your favorite car!');
-});
+  res.render('index')
+})
+
+
+// Server has started text
+app.listen(3000, () => {
+  console.log('Whats up! The server has started on port 3000. Have fun!')
+})
