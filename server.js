@@ -5,14 +5,14 @@ const path = require("path");
 const ejs = require("ejs");
 
 const compression = require("compression");
-
+// Eerst alle uses doen
 app.use(compression());
+app.use(express.static("public"));
 
 // Weergave engine
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.set("partials", path.join(__dirname, "partials"));
-app.set("assets", path.join(__dirname, "assets"));
 
 app.get("/", (req, res) => {
   res.render("index");
@@ -34,7 +34,6 @@ app.use(function (req, res) {
   res.render("error");
 });
 
-app.use(express.static("assets"));
 // Server has started text
 app.listen(3000, () => {
   console.log("Whats up! The server has started on port 3000. Have fun!");
