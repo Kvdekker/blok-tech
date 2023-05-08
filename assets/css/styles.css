@@ -2,7 +2,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',  Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 :root {
@@ -39,13 +40,11 @@ nav {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  
+
   background-color: var(--footercolor);
   box-shadow: inset 0px -5px 5px -5px rgba(0, 0, 0, 0.4);
 
   justify-content: space-between;
-
-
 }
 
 .navbutton a {
@@ -90,9 +89,6 @@ h1 {
   font-weight: bold;
 }
 
-
-
-
 .vind-auto {
   padding: 1em;
   background-color: var(--backgroundcolor);
@@ -114,7 +110,7 @@ select {
 
   padding: 5px;
   margin: 5px 0 15px 0;
-  
+
   font-size: 16px;
   border-radius: 7.5px;
   width: 100%;
@@ -134,7 +130,6 @@ select {
   text-align: center;
   text-decoration: none;
 }
-
 
 @media screen and (min-width: 500px) {
   main {
@@ -160,7 +155,6 @@ select {
   main {
     flex-direction: column;
     background-image: url(./images/car22.jpg);
-
   }
 
   .vind-auto {
@@ -170,7 +164,7 @@ select {
     margin: 0 auto;
   }
 
-  .vind-auto h2{
+  .vind-auto h2 {
     font-size: 75px;
   }
 
@@ -183,7 +177,7 @@ select {
     max-width: 100%;
   }
 
-  .vind-auto section:first-of-type{
+  .vind-auto section:first-of-type {
     margin: 1em auto;
     display: flex;
     align-items: flex-start;
@@ -201,14 +195,13 @@ select {
   }
 }
 
-
 /* Footer */
 footer {
   background-color: var(--footercolor);
 
   padding: 1em 2em 1em 2em;
 
-  position:relative;
+  position: relative;
   bottom: 0;
   width: 100%;
 }
