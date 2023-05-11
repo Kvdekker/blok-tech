@@ -1,37 +1,38 @@
 const express = require("express");
 const app = express();
-const path = require("path");
 
 const ejs = require("ejs");
 
 const compression = require("compression");
+
 // Eerst alle uses doen
 app.use(compression());
 app.use(express.static("public"));
 
 // Weergave engine
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));
-app.set("partials", path.join(__dirname, "partials"));
+app.set("views", "views");
+app.set("partials", "partials");
 
-app.get("/", (req, res) => {
+// Homepagina
+app.get("/home", (req, res) => {
   res.render("index");
 });
 
-app.get("/about", (req, res) => {
-  res.render("index");
-});
-
-// When getting an error
-app.get("/error", (req, res) => {
-  res.send("<h1>ERROR 404 NOT FOUND</h1>");
+// login
+app.get("/login", (req, res) => {
+  res.render("login");
 });
 
 // Error 404
 app.use(function (req, res) {
   res.status(404);
-
   res.render("error");
+});
+
+// Render errorpage
+app.get("/error", (req, res) => {
+  res.send("<h1>ERROR 404 NOT FOUND</h1>");
 });
 
 // Server has started text

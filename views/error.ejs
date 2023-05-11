@@ -1,2 +1,23 @@
-<%  %>
-<h1>ERROR 404 NOT FOUND</h1>
+<!DOCTYPE html>
+<html lang="en">
+  <title>Error pagina</title>
+
+  <head>
+    <%- include ('partials/head.ejs') %>
+  </head>
+
+  <body>
+    <header><%- include ('partials/header.ejs') %></header>
+    <main class="mainerror">
+      <h1>Er is een fout opgetreden!</h1>
+      <p>
+        Onze excuses, er is een onverwachte fout opgetreden tijdens het
+        verwerken van je verzoek. We werken eraan om het probleem zo snel
+        mogelijk op te lossen. Dank je voor je begrip.
+      </p>
+    </main>
+
+    <footer><%- include ('partials/footer.ejs') %></footer>
+  </body>
+  <%- include ('partials/script.ejs') %>
+</html>

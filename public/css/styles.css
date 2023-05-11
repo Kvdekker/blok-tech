@@ -20,6 +20,9 @@
 
 body {
   color: var(--fontcolor);
+
+  position: relative;
+  min-height: 100vh;
 }
 
 /* Begin navbar */
@@ -80,7 +83,7 @@ nav {
 
 .navbutton a {
   text-decoration: none;
-  font-weight: light;
+  font-weight: bold;
   color: var(--fontcolor);
 }
 
@@ -98,7 +101,7 @@ nav {
 
 /* Begin main */
 
-main {
+.main1 {
   margin-top: 4em;
   padding: 2em;
 
@@ -106,15 +109,24 @@ main {
   flex-direction: column;
 }
 
-h2 {
-  padding: 10px;
-  color: white;
-}
-
-.hoofd-tekst {
+#main1 {
   background-image: url("/images/cars-red-car-parking.png");
   background-size: auto auto;
   background-position: center;
+  padding-bottom: 7em;
+}
+
+.mainerror {
+  margin: 10em 10em 20em 10em;
+}
+
+.mainlogin {
+  margin: 10em 10em 20em 10em;
+}
+
+h2 {
+  padding: 10px;
+  color: white;
 }
 .hoofd-tekst p {
   color: var(--footerfontcolor);
@@ -133,7 +145,7 @@ Vind auto sectie */
 .vind-auto {
   margin-bottom: 1em;
   padding: 1em;
-  background: linear-gradient(to bottom, #007bff, #00438b);
+  background: var(--buttoncolor);
 
   height: fit-content;
 
@@ -175,15 +187,15 @@ label {
   padding: 10px 20px;
   margin: 1em auto;
 
-  background-color: var(--buttoncolor);
-
+  border: 2px solid white;
+  border-radius: 10px;
   color: #fff;
   text-align: center;
   text-decoration: none;
 }
 /* Bij klein scherm */
 @media (min-width: 500px) {
-  main {
+  .main1 {
     flex-direction: row-reverse;
   }
 
@@ -205,16 +217,16 @@ label {
 }
 /* Bij middel scherm */
 @media (min-width: 870px) {
-  main {
-    flex-direction: column;
+  .main1 {
+    flex-direction: row;
   }
 
   .vind-auto {
     width: 500px;
 
-    padding: 1.5em 3em;
-    margin: 0 auto;
-    border-radius: 10px;
+    padding: 1.5em 2em;
+    margin: 2em 3em 2em 3em;
+    border-radius: 0px;
   }
 
   .vind-auto h2 {
@@ -243,11 +255,7 @@ label {
   .hoofd-tekst {
     width: fit-content;
 
-    margin-top: 1em;
-    padding: 1em 15em;
-  }
-  #main1 {
-    padding: 0;
+    padding: 1em 5em;
   }
 }
 
@@ -260,6 +268,8 @@ footer {
   position: relative;
   bottom: 0;
   width: 100%;
+
+  position: absolute;
 }
 
 footer p {
