@@ -10,8 +10,15 @@
   </div>
 
   <section class="navbutton">
-    <a href="https://www.example.com">Lijst</a>
-    <a href="https://www.example.com">Nieuwe lijst</a>
-    <a class="loginbutton" href="/Login">Account</a>
+    <% if(isLoggedIn) { %>
+    <a href="https://www.example.com"
+      ><img src="/images/bookmark.png" alt="Lijst"
+    /></a>
+    <a href="/user"
+      ><img class="userimg" src="/images/user.png" alt="Gebruiker"
+    /></a>
+    <% }else{ %>
+    <a class="loginbutton" href="/loginpagina">Login</a>
+    <% } %>
   </section>
 </nav>

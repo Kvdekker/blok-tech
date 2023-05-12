@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <title>User</title>
+
+  <head>
+    <%- include ('partials/head.ejs') %>
+  </head>
+
+  <body>
+    <header><%- include ('partials/header.ejs') %></header>
+    <main class="mainlogin">
+      <% if (isLoggedIn) { %>
+      <form action="/logout" method="post">
+        <button type="submit">Log uit</button>
+      </form>
+      <% } %>
+    </main>
+
+    <footer><%- include ('partials/footer.ejs') %></footer>
+  </body>
+  <%- include ('partials/script.ejs') %>
+</html>

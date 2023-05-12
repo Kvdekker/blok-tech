@@ -7,13 +7,26 @@
   font-size: 20px;
 }
 
+$backgroundcolor: rgb(255, 255, 255);
+$fontcolor: rgb(48, 48, 48);
+$footerfontcolor: rgb(255, 255, 255);
+$bordercolor: rgb(43, 43, 43);
+$navcolor: white;
+$footercolor: rgb(45, 45, 45);
+$buttoncolor: #007bff;
+$buttonfontcolor: rgb(255, 255, 255);
+$hoofdtekstcolor: rgb(45, 45, 45);
+$hamburger: rgb(45, 45, 45);
+$hoofdtekstcolorfont: white;
+
 body {
-  color: rgb(48, 48, 48);
+  color: $fontcolor;
   position: relative;
   min-height: 100vh;
 }
 
 /* Begin navbar */
+
 header {
   position: fixed;
   top: 0;
@@ -23,11 +36,14 @@ header {
 
 nav {
   padding: 1em;
+
   display: grid;
   grid-template-columns: auto auto;
   align-items: center;
-  background-color: white;
+
+  background-color: $navcolor;
   position: relative;
+
   justify-content: space-between;
 }
 
@@ -51,7 +67,6 @@ nav {
   grid-column: 1;
   grid-row: 1 / span 2;
 }
-
 /* Hamburger menu */
 .hamburger {
   justify-self: end;
@@ -61,7 +76,7 @@ nav {
 .line {
   width: 25px;
   height: 3px;
-  background-color: rgb(45, 45, 45);
+  background-color: $hamburger;
   margin: 5px 0;
 }
 
@@ -88,17 +103,19 @@ nav {
 }
 
 .loginbutton {
-  border: solid 2px #007bff;
+  border: solid 2px $buttoncolor;
   border-radius: 20px;
   padding: 5px 20px;
-  color: #007bff;
+  color: $buttoncolor;
 }
-
 /* Einde navbar */
+
 /* Begin main */
+
 .main1 {
   margin-top: 4em;
   padding: 2em;
+
   display: flex;
   flex-direction: column;
 }
@@ -118,11 +135,12 @@ nav {
 #main1 legend {
   display: none;
 }
-
+// Errorpagina
 .mainerror {
   margin: 10em 10em 20em 10em;
 }
 
+// Loginpagina
 .mainlogin {
   background-image: url("/images/carsparked.jpg");
   background-size: cover;
@@ -131,7 +149,7 @@ nav {
 }
 
 .mainloginart {
-  background-color: #007bff;
+  background-color: $buttoncolor;
   margin: 10em 20em 20em 20em;
   border-radius: 10px;
   padding: 2em;
@@ -148,17 +166,16 @@ nav {
 }
 
 .mainlogin h2 {
-  color: white;
+  color: $hoofdtekstcolorfont;
 }
 
 h2 {
   font-size: 40px;
   padding: px;
-  color: white;
+  color: $hoofdtekstcolorfont;
 }
-
 .hoofd-tekst p {
-  color: white;
+  color: $hoofdtekstcolorfont;
   padding: 0 1em 1em 1em;
   line-height: 1.6em;
 }
@@ -172,16 +189,17 @@ h2 {
 .vind-auto {
   margin-bottom: 1em;
   padding: 1em;
-  background: #007bff;
-  height: -moz-fit-content;
+  background: $buttoncolor;
+
   height: fit-content;
+
   border-radius: 20px;
 }
 
 .vind-auto h2 {
   font-size: 40px;
   padding-bottom: 0.5em;
-  color: rgb(255, 255, 255);
+  color: $footerfontcolor;
 }
 
 .vind-auto section {
@@ -192,6 +210,7 @@ h2 {
 /* De dropdownmenus */
 select {
   border: none;
+
   padding: 5px;
   margin: 5px 0 15px 0;
   border-radius: 10px;
@@ -200,30 +219,33 @@ select {
 }
 
 label {
-  color: rgb(255, 255, 255);
+  color: $footerfontcolor;
 }
 
 .vindautobutton {
   display: block;
+
   width: 100%;
   padding: 10px 20px;
   margin: 1em auto;
+
   border: 2px solid white;
   border-radius: 10px;
-  color: white;
+  color: $hoofdtekstcolorfont;
   text-align: center;
   text-decoration: none;
 }
-
 /* Bij klein scherm */
 @media (min-width: 500px) {
   .main1 {
     flex-direction: row-reverse;
   }
+
   .vind-auto {
     width: 350vw;
     margin-left: 1em;
   }
+
   .hoofd-tekst {
     margin: 0;
   }
@@ -240,44 +262,54 @@ label {
   .main1 {
     flex-direction: row;
   }
+
   .vind-auto {
     width: 500px;
+
     padding: 1.5em 2em;
     margin: 2em 3em 2em 3em;
     border-radius: 0px;
   }
+
   .vind-auto h2 {
     font-size: 40px;
   }
+
   select {
     max-width: 100%;
   }
+
   .vind-auto section:first-of-type {
     margin: 1em auto;
     display: flex;
     align-items: flex-start;
   }
+
   .hoofd-tekst {
-    width: -moz-fit-content;
     width: fit-content;
+
     padding: 1em 5em;
   }
 }
+
 /* Footer */
 footer {
-  background-color: rgb(45, 45, 45);
+  background-color: $footercolor;
+
   padding: 1em 2em 1em 2em;
+
   position: relative;
   bottom: 0;
   width: 100%;
+
   position: absolute;
 }
 
 footer p {
-  color: rgb(255, 255, 255);
+  color: $footerfontcolor;
   padding-bottom: 0.2em;
 }
 
 footer a {
-  color: rgb(255, 255, 255);
-} /*# sourceMappingURL=styles.css.map */
+  color: $footerfontcolor;
+}

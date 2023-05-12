@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <title>Log in</title>
+
+  <head>
+    <%- include ('partials/head.ejs') %>
+  </head>
+
+  <body class="mainlogin">
+    <header><%- include ('partials/header.ejs') %></header>
+
+    <main>
+      <article class="mainloginart">
+        <h2>Inloggen</h2>
+        <form action="/login" method="post" class="login-form">
+          <label for="Gebruikersnaam">Gebruikersnaam</label>
+          <input type="text" id="gebruikersnaam" name="gebruikersnaam" />
+          <label for="Wachtwoord">Wachtwoord</label>
+          <input type="password" id="wachtwoord" name="wachtwoord" />
+          <button type="submit">Inloggen</button>
+        </form>
+      </article>
+    </main>
+
+    <footer><%- include ('partials/footer.ejs') %></footer>
+  </body>
+  <%- include ('partials/script.ejs') %>
+</html>

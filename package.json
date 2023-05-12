@@ -13,11 +13,13 @@
   "author": "Koen Dekker",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.20.2",
     "camelcase": "^7.0.1",
     "compression": "^1.7.4",
     "ejs": "^3.1.9",
     "ejs-lint": "^2.0.0",
     "express": "^4.18.2",
+    "express-session": "^1.17.3",
     "lodash": "^4.17.21",
     "mongodb": "^5.4.0",
     "repeat-string": "^1.6.1"
