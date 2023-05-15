@@ -2,8 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 20px;
 }
 
@@ -22,64 +21,39 @@ header {
 }
 
 nav {
-  padding: 1em;
+  padding: 1em 2em;
+  height: 80px;
   display: grid;
   grid-template-columns: auto auto;
   align-items: center;
-  background-color: white;
+  background-color: rgb(45, 45, 45);
   position: relative;
   justify-content: space-between;
 }
 
-.navbutton img {
-  width: 1.7em;
-  height: 1.7em;
-}
-
-.navbutton {
+.nav_buttons {
   display: none;
 }
+.nav_buttons img {
+  width: 1.7em;
+  height: 1.7em;
+  filter: invert(1);
+}
+.nav_buttons a {
+  text-decoration: none;
+  font-weight: bold;
+}
 
-.navbutton.active {
+@media (min-width: 500px) {
+  .nav_buttons {
+    display: block;
+  }
+}
+.nav_buttons.active {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto auto;
   flex-direction: row;
-}
-
-.user {
-  grid-column: 1;
-  grid-row: 1 / span 2;
-}
-
-/* Hamburger menu */
-.hamburger {
-  justify-self: end;
-  cursor: pointer;
-}
-
-.line {
-  width: 25px;
-  height: 3px;
-  background-color: rgb(45, 45, 45);
-  margin: 5px 0;
-}
-
-.hamburger.active .line:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger.active .line:nth-child(1) {
-  transform: rotate(45deg) translate(6px, 6px);
-}
-
-.hamburger.active .line:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
-}
-
-.navbutton a {
-  text-decoration: none;
-  font-weight: bold;
 }
 
 .logo {
@@ -87,106 +61,184 @@ nav {
   width: 10em;
 }
 
-.loginbutton {
+.nav_buttons_login {
   border: solid 2px #007bff;
   border-radius: 20px;
-  padding: 5px 20px;
+  padding: 5px 30px;
   color: #007bff;
 }
 
-/* Einde navbar */
-/* Begin main */
-.main1 {
-  margin-top: 4em;
-  padding: 2em;
-  display: flex;
-  flex-direction: column;
+.user {
+  grid-column: 1;
+  grid-row: 1/span 2;
 }
 
-#main1 {
+/* hambuger_menu menu */
+.hambuger_menu {
+  justify-self: end;
+  cursor: pointer;
+}
+
+@media (min-width: 500px) {
+  .hambuger_menu {
+    display: none;
+    cursor: pointer;
+  }
+}
+.line {
+  width: 25px;
+  height: 3px;
+  background-color: rgb(45, 45, 45);
+  margin: 5px 0;
+}
+
+.hambuger_menu.active .line:nth-child(2) {
+  opacity: 0;
+}
+
+.hambuger_menu.active .line:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hambuger_menu.active .line:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Einde navbar */
+h2 {
+  font-size: 40px;
+  color: white;
+}
+
+/* Begin main */
+.index_main {
+  margin-top: 2em;
+  padding: 2em 0 7em 0;
+  display: flex;
+  flex-direction: column;
   background-image: url("/images/cars-red-car-parking.png");
   background-size: auto auto;
   background-position: center;
-  padding-bottom: 7em;
 }
-
-#main1 fieldset {
-  border: none;
-  padding: 0;
-}
-
-#main1 legend {
-  display: none;
-}
-
-.mainerror {
-  margin: 10em 10em 20em 10em;
-}
-
-.mainlogin {
-  background-image: url("/images/carsparked.jpg");
-  background-size: cover;
-  background-position: center;
-  padding-bottom: 7em;
-}
-
-.mainloginart {
-  background-color: #007bff;
-  margin: 10em 20em 20em 20em;
-  border-radius: 10px;
-  padding: 2em;
-}
-
-.mainlogin form {
-  display: flex;
-  flex-direction: column;
-  padding: 0.5em;
-}
-
-.mainlogin input {
-  margin-bottom: 1em;
-}
-
-.mainlogin h2 {
-  color: white;
-}
-
-h2 {
-  font-size: 40px;
-  padding: px;
-  color: white;
-}
-
-.hoofd-tekst p {
-  color: white;
-  padding: 0 1em 1em 1em;
-  line-height: 1.6em;
-}
-
-.hoofd-tekst p:first-of-type {
-  font-weight: bold;
-}
-
-/* 
-  Vind auto sectie */
-.vind-auto {
-  margin-bottom: 1em;
+.index_main article:first-of-type {
+  margin: 1em 20px;
   padding: 1em;
   background: #007bff;
   height: -moz-fit-content;
   height: fit-content;
   border-radius: 20px;
 }
-
-.vind-auto h2 {
+.index_main article h2 {
   font-size: 40px;
   padding-bottom: 0.5em;
   color: rgb(255, 255, 255);
 }
-
-.vind-auto section {
+.index_main article section {
   display: flex;
   flex-direction: column;
+}
+.index_main article:nth-of-type(2) {
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 1em 20px;
+}
+.index_main article:nth-of-type(2) p {
+  color: white;
+  padding: 0 1em 1em 1em;
+  line-height: 1.6em;
+}
+.index_main article:nth-of-type(2) p:first-of-type {
+  font-weight: bold;
+}
+
+@media (min-width: 500px) {
+  .index_main {
+    flex-direction: row-reverse;
+  }
+  .index_main article {
+    margin: 1em;
+  }
+}
+@media (min-width: 870px) {
+  .index_main article {
+    width: 500px;
+    margin: 2em 3em 2em 3em;
+    border-radius: 0px;
+  }
+  .index_main article h2 {
+    font-size: 40px;
+  }
+  .index_main article section:first-of-type {
+    margin: 1em auto;
+    display: flex;
+    align-items: flex-start;
+  }
+}
+@media (min-width: 1000px) {
+  .index_main {
+    padding: 2em 10em 10em 10em;
+  }
+}
+fieldset {
+  border: none;
+  padding: 0;
+}
+
+legend {
+  display: none;
+}
+
+.error_main {
+  margin: 10em 10em 20em 10em;
+}
+
+.login_main {
+  background-image: url("/images/carsparked.png");
+  background-size: cover;
+  background-position: center;
+  padding: 2em;
+}
+.login_main form {
+  background-color: #007bff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  margin: 10em 0.5em 20em 0.5em;
+  padding: 2em;
+}
+.login_main input {
+  margin-bottom: 1em;
+}
+.login_main h2 {
+  color: white;
+}
+
+@media (min-width: 500px) {
+  .login_main form {
+    margin: 10em 3em 20em 3em;
+  }
+}
+@media (min-width: 800px) {
+  .login_main form {
+    margin: 10em 10em 20em 10em;
+  }
+}
+@media (min-width: 1200px) {
+  .login_main form {
+    margin: 10em 20em 20em 20em;
+  }
+}
+.user_main {
+  margin-top: 10em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.user_main h2 {
+  color: rgb(45, 45, 45);
+}
+.user_main p {
+  padding: 2em 1em 0.2em 1em;
 }
 
 /* De dropdownmenus */
@@ -196,73 +248,38 @@ select {
   margin: 5px 0 15px 0;
   border-radius: 10px;
   width: 100%;
-  max-width: 400px;
+}
+
+.isgeselecteerd {
+  border: 3px solid rgb(4, 214, 4);
+}
+
+input {
+  border: none;
+  padding: 5px;
+  margin: 5px 0 15px 0;
+  border-radius: 10px;
 }
 
 label {
   color: rgb(255, 255, 255);
 }
 
-.vindautobutton {
+.button_whiteborder {
   display: block;
   width: 100%;
   padding: 10px 20px;
   margin: 1em auto;
   border: 2px solid white;
   border-radius: 10px;
+  background-color: #007bff;
   color: white;
   text-align: center;
   text-decoration: none;
 }
 
 /* Bij klein scherm */
-@media (min-width: 500px) {
-  .main1 {
-    flex-direction: row-reverse;
-  }
-  .vind-auto {
-    width: 350vw;
-    margin-left: 1em;
-  }
-  .hoofd-tekst {
-    margin: 0;
-  }
-  .navbutton {
-    display: block;
-  }
-  .hamburger {
-    display: none;
-    cursor: pointer;
-  }
-}
 /* Bij middel scherm */
-@media (min-width: 870px) {
-  .main1 {
-    flex-direction: row;
-  }
-  .vind-auto {
-    width: 500px;
-    padding: 1.5em 2em;
-    margin: 2em 3em 2em 3em;
-    border-radius: 0px;
-  }
-  .vind-auto h2 {
-    font-size: 40px;
-  }
-  select {
-    max-width: 100%;
-  }
-  .vind-auto section:first-of-type {
-    margin: 1em auto;
-    display: flex;
-    align-items: flex-start;
-  }
-  .hoofd-tekst {
-    width: -moz-fit-content;
-    width: fit-content;
-    padding: 1em 5em;
-  }
-}
 /* Footer */
 footer {
   background-color: rgb(45, 45, 45);
@@ -272,12 +289,10 @@ footer {
   width: 100%;
   position: absolute;
 }
-
 footer p {
   color: rgb(255, 255, 255);
   padding-bottom: 0.2em;
 }
-
 footer a {
   color: rgb(255, 255, 255);
-} /*# sourceMappingURL=styles.css.map */
+}/*# sourceMappingURL=styles.css.map */

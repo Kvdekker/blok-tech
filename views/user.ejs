@@ -8,12 +8,22 @@
 
   <body>
     <header><%- include ('partials/header.ejs') %></header>
-    <main class="mainlogin">
-      <% if (isLoggedIn) { %>
-      <form action="/logout" method="post">
-        <button type="submit">Log uit</button>
-      </form>
-      <% } %>
+    <main class="user_main">
+      <article>
+        <% if (isIngelogd) { %>
+        <h1>Hallo, <%= gebruikersnaam %>!</h1>
+        <% } else { %>
+        <h1>Hallo, gebruiker!</h1>
+        <% } %>
+
+        <h2>Log uit</h2>
+        <p>Klik hieronder om uit te loggen.</p>
+        <% if (isIngelogd) { %>
+        <form action="/logout" method="post">
+          <button class="button_whiteborder" type="submit">Log uit</button>
+        </form>
+        <% } %>
+      </article>
     </main>
 
     <footer><%- include ('partials/footer.ejs') %></footer>

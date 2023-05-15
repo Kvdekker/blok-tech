@@ -6,6 +6,7 @@ const session = require("express-session");
 const ejs = require("ejs");
 
 const compression = require("compression");
+const e = require("express");
 
 // Eerst alle uses doen
 app.use(bodyparser.urlencoded({ extended: false }));
@@ -17,7 +18,7 @@ app.use(
   })
 );
 app.use((req, res, next) => {
-  res.locals.isLoggedIn = req.session.isLoggedIn;
+  res.locals.isIngelogd = req.session.isIngelogd;
   next();
 });
 
@@ -31,7 +32,7 @@ app.set("partials", "partials");
 
 // Homepagina
 app.get("/home", (req, res) => {
-  const isLoggedIn = req.session.isLoggedIn;
+  const isIngelogd = req.session.isIngelogd;
   res.render("index");
 });
 
@@ -41,24 +42,43 @@ app.get("/loginpagina", (req, res) => {
 });
 
 // login route
+const gebruikers = [
+  { gebruikersnaam: "admin", wachtwoord: "password" },
+  { gebruikersnaam: "Koen", wachtwoord: "password" },
+  { gebruikersnaam: "Ivo", wachtwoord: "password" },
+  { gebruikersnaam: "Robert", wachtwoord: "password" },
+  // Voeg hier extra gebruikers toe
+];
+
 app.post("/login", (req, res) => {
   const gebruikersnaam = req.body.gebruikersnaam;
   const wachtwoord = req.body.wachtwoord;
 
-  if (req.session.isLoggedIn) {
+  if (req.session.isIngelogd) {
     return res.redirect("/home");
   }
-  if (gebruikersnaam === "admin" && wachtwoord === "password") {
-    req.session.isLoggedIn = true; //Sla inlog op
-    res.redirect("/home"); //Stuur naar home
-  } else {
-    res.send("Verkeerde inloggegevens");
+
+  const gebruiker = gebruikers.find(
+    (gebruiker) =>
+      gebruiker.gebruikersnaam === gebruikersnaam &&
+      gebruiker.wachtwoord == wachtwoord
+  );
+  {
+    if (gebruiker) {
+      req.session.isIngelogd = true;
+      req.session.username = gebruikersnaam;
+      res.redirect("/user");
+    } else {
+      res.send("Verkeerde inloggegevens");
+    }
   }
 });
 
 //User pagina
 app.get("/user", (req, res) => {
-  res.render("user");
+  const gebruikersnaam = req.session.username;
+
+  res.render("user", { gebruikersnaam });
 });
 
 //Logout

@@ -6,18 +6,18 @@
     <%- include ('partials/head.ejs') %>
   </head>
 
-  <body class="mainlogin">
+  <body >
     <header><%- include ('partials/header.ejs') %></header>
 
-    <main>
-      <article class="mainloginart">
-        <h2>Inloggen</h2>
+    <main class="login_main">
+      <article>
         <form action="/login" method="post" class="login-form">
+          <h2>Inloggen</h2>
           <label for="Gebruikersnaam">Gebruikersnaam</label>
           <input type="text" id="gebruikersnaam" name="gebruikersnaam" />
           <label for="Wachtwoord">Wachtwoord</label>
           <input type="password" id="wachtwoord" name="wachtwoord" />
-          <button type="submit">Inloggen</button>
+          <button class="button_whiteborder"" type="submit">Inloggen</button>
         </form>
       </article>
     </main>

@@ -16,7 +16,7 @@ $footercolor: rgb(45, 45, 45);
 $buttoncolor: #007bff;
 $buttonfontcolor: rgb(255, 255, 255);
 $hoofdtekstcolor: rgb(45, 45, 45);
-$hamburger: rgb(45, 45, 45);
+$hambuger_menu: rgb(45, 45, 45);
 $hoofdtekstcolorfont: white;
 
 body {
@@ -35,66 +35,45 @@ header {
 }
 
 nav {
-  padding: 1em;
+  padding: 1em 2em;
+  height: 80px;
 
   display: grid;
   grid-template-columns: auto auto;
   align-items: center;
 
-  background-color: $navcolor;
+  background-color: $footercolor;
   position: relative;
 
   justify-content: space-between;
 }
 
-.navbutton img {
-  width: 1.7em;
-  height: 1.7em;
-}
-
-.navbutton {
+.nav_buttons {
   display: none;
+
+  img {
+    width: 1.7em;
+    height: 1.7em;
+    filter: invert(1);
+  }
+
+  a {
+    text-decoration: none;
+    font-weight: bold;
+  }
 }
 
-.navbutton.active {
+@media (min-width: 500px) {
+  .nav_buttons {
+    display: block;
+  }
+}
+
+.nav_buttons.active {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto auto;
   flex-direction: row;
-}
-
-.user {
-  grid-column: 1;
-  grid-row: 1 / span 2;
-}
-/* Hamburger menu */
-.hamburger {
-  justify-self: end;
-  cursor: pointer;
-}
-
-.line {
-  width: 25px;
-  height: 3px;
-  background-color: $hamburger;
-  margin: 5px 0;
-}
-
-.hamburger.active .line:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger.active .line:nth-child(1) {
-  transform: rotate(45deg) translate(6px, 6px);
-}
-
-.hamburger.active .line:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
-}
-
-.navbutton a {
-  text-decoration: none;
-  font-weight: bold;
 }
 
 .logo {
@@ -102,109 +81,218 @@ nav {
   width: 10em;
 }
 
-.loginbutton {
+.nav_buttons_login {
   border: solid 2px $buttoncolor;
   border-radius: 20px;
-  padding: 5px 20px;
+  padding: 5px 30px;
   color: $buttoncolor;
+}
+
+.user {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+}
+
+/* hambuger_menu menu */
+.hambuger_menu {
+  justify-self: end;
+  cursor: pointer;
+}
+
+@media (min-width: 500px) {
+  .hambuger_menu {
+    display: none;
+    cursor: pointer;
+  }
+}
+
+.line {
+  width: 25px;
+  height: 3px;
+  background-color: $hambuger_menu;
+  margin: 5px 0;
+}
+
+.hambuger_menu.active .line:nth-child(2) {
+  opacity: 0;
+}
+
+.hambuger_menu.active .line:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hambuger_menu.active .line:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
 }
 /* Einde navbar */
 
+// Algemeen
+h2 {
+  font-size: 40px;
+  color: $hoofdtekstcolorfont;
+}
+
 /* Begin main */
 
-.main1 {
-  margin-top: 4em;
-  padding: 2em;
+.index_main {
+  margin-top: 2em;
+  padding: 2em 0 7em 0;
 
   display: flex;
   flex-direction: column;
-}
 
-#main1 {
   background-image: url("/images/cars-red-car-parking.png");
   background-size: auto auto;
   background-position: center;
-  padding-bottom: 7em;
+
+  // Vind auto sectie//
+  article:first-of-type {
+    margin: 1em 20px;
+    padding: 1em;
+    background: $buttoncolor;
+
+    height: fit-content;
+
+    border-radius: 20px;
+  }
+
+  article h2 {
+    font-size: 40px;
+    padding-bottom: 0.5em;
+    color: $footerfontcolor;
+  }
+
+  article section {
+    display: flex;
+    flex-direction: column;
+  }
+
+  //Tekst op hoofdpagina//
+
+  article:nth-of-type(2) {
+    width: fit-content;
+    margin: 1em 20px;
+
+    p {
+      color: $hoofdtekstcolorfont;
+      padding: 0 1em 1em 1em;
+      line-height: 1.6em;
+    }
+  }
+
+  article:nth-of-type(2) p:first-of-type {
+    font-weight: bold;
+  }
 }
 
-#main1 fieldset {
+@media (min-width: 500px) {
+  .index_main {
+    flex-direction: row-reverse;
+
+    article {
+      margin: 1em;
+    }
+  }
+}
+
+@media (min-width: 870px) {
+  .index_main {
+    article {
+      width: 500px;
+      margin: 2em 3em 2em 3em;
+      border-radius: 0px;
+
+      h2 {
+        font-size: 40px;
+      }
+
+      section:first-of-type {
+        margin: 1em auto;
+        display: flex;
+        align-items: flex-start;
+      }
+    }
+  }
+}
+
+@media (min-width: 1000px) {
+  .index_main {
+    padding: 2em 10em 10em 10em;
+  }
+}
+
+fieldset {
   border: none;
   padding: 0;
 }
 
-#main1 legend {
+legend {
   display: none;
 }
+
 // Errorpagina
-.mainerror {
+.error_main {
   margin: 10em 10em 20em 10em;
 }
 
 // Loginpagina
-.mainlogin {
-  background-image: url("/images/carsparked.jpg");
+.login_main {
+  background-image: url("/images/carsparked.png");
   background-size: cover;
   background-position: center;
-  padding-bottom: 7em;
-}
-
-.mainloginart {
-  background-color: $buttoncolor;
-  margin: 10em 20em 20em 20em;
-  border-radius: 10px;
   padding: 2em;
+
+  form {
+    background-color: $buttoncolor;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    margin: 10em 0.5em 20em 0.5em;
+    padding: 2em;
+  }
+
+  input {
+    margin-bottom: 1em;
+  }
+
+  h2 {
+    color: $hoofdtekstcolorfont;
+  }
 }
 
-.mainlogin form {
+@media (min-width: 500px) {
+  .login_main form {
+    margin: 10em 3em 20em 3em;
+  }
+}
+
+@media (min-width: 800px) {
+  .login_main form {
+    margin: 10em 10em 20em 10em;
+  }
+}
+
+@media (min-width: 1200px) {
+  .login_main form {
+    margin: 10em 20em 20em 20em;
+  }
+}
+
+//User
+.user_main {
+  margin-top: 10em;
   display: flex;
   flex-direction: column;
-  padding: 0.5em;
-}
+  align-items: center;
 
-.mainlogin input {
-  margin-bottom: 1em;
-}
+  h2 {
+    color: $footercolor;
+  }
 
-.mainlogin h2 {
-  color: $hoofdtekstcolorfont;
-}
-
-h2 {
-  font-size: 40px;
-  padding: px;
-  color: $hoofdtekstcolorfont;
-}
-.hoofd-tekst p {
-  color: $hoofdtekstcolorfont;
-  padding: 0 1em 1em 1em;
-  line-height: 1.6em;
-}
-
-.hoofd-tekst p:first-of-type {
-  font-weight: bold;
-}
-
-/* 
-  Vind auto sectie */
-.vind-auto {
-  margin-bottom: 1em;
-  padding: 1em;
-  background: $buttoncolor;
-
-  height: fit-content;
-
-  border-radius: 20px;
-}
-
-.vind-auto h2 {
-  font-size: 40px;
-  padding-bottom: 0.5em;
-  color: $footerfontcolor;
-}
-
-.vind-auto section {
-  display: flex;
-  flex-direction: column;
+  p {
+    padding: 2em 1em 0.2em 1em;
+  }
 }
 
 /* De dropdownmenus */
@@ -215,14 +303,25 @@ select {
   margin: 5px 0 15px 0;
   border-radius: 10px;
   width: 100%;
-  max-width: 400px;
+}
+
+.isgeselecteerd {
+  border: 3px solid rgb(4, 214, 4);
+}
+
+input {
+  border: none;
+
+  padding: 5px;
+  margin: 5px 0 15px 0;
+  border-radius: 10px;
 }
 
 label {
   color: $footerfontcolor;
 }
 
-.vindautobutton {
+.button_whiteborder {
   display: block;
 
   width: 100%;
@@ -231,66 +330,16 @@ label {
 
   border: 2px solid white;
   border-radius: 10px;
+  background-color: $buttoncolor;
+
   color: $hoofdtekstcolorfont;
   text-align: center;
   text-decoration: none;
 }
+
 /* Bij klein scherm */
-@media (min-width: 500px) {
-  .main1 {
-    flex-direction: row-reverse;
-  }
 
-  .vind-auto {
-    width: 350vw;
-    margin-left: 1em;
-  }
-
-  .hoofd-tekst {
-    margin: 0;
-  }
-  .navbutton {
-    display: block;
-  }
-  .hamburger {
-    display: none;
-    cursor: pointer;
-  }
-}
 /* Bij middel scherm */
-@media (min-width: 870px) {
-  .main1 {
-    flex-direction: row;
-  }
-
-  .vind-auto {
-    width: 500px;
-
-    padding: 1.5em 2em;
-    margin: 2em 3em 2em 3em;
-    border-radius: 0px;
-  }
-
-  .vind-auto h2 {
-    font-size: 40px;
-  }
-
-  select {
-    max-width: 100%;
-  }
-
-  .vind-auto section:first-of-type {
-    margin: 1em auto;
-    display: flex;
-    align-items: flex-start;
-  }
-
-  .hoofd-tekst {
-    width: fit-content;
-
-    padding: 1em 5em;
-  }
-}
 
 /* Footer */
 footer {
@@ -303,13 +352,13 @@ footer {
   width: 100%;
 
   position: absolute;
-}
 
-footer p {
-  color: $footerfontcolor;
-  padding-bottom: 0.2em;
-}
+  p {
+    color: $footerfontcolor;
+    padding-bottom: 0.2em;
+  }
 
-footer a {
-  color: $footerfontcolor;
+  a {
+    color: $footerfontcolor;
+  }
 }

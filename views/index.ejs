@@ -8,8 +8,8 @@
 
 <body>
   <header><%- include ('partials/header.ejs') %></header>
-  <main class="main1" id="main1">
-    <article class="vind-auto">
+  <main class="index_main">
+    <article>
       <h2>Vind hier jouw auto!</h2>
 
       <fieldset>
@@ -41,7 +41,7 @@
           </select>
 
           <label for="deuren">Hoeveel deuren?</label>
-          <select name="aantal-deuren" id="aantal-deur">
+          <select name="soort-deuren" id="soort-deur">
             <option value="driedeur">3 deuren</option>
             <option value="vijfdeur">5 deuren</option>
             <option value="zevendeur">7 deuren</option>
@@ -62,7 +62,7 @@
           </select>
 
           <label for="prijs">Welke prijs?</label>
-          <select name="prijs" id="prijs">
+          <select name="soort-prijs" id="soort-prijs">
             <option value="benzine">1000-2500</option>
             <option value="diesel">2500-5000</option>
             <option value="hybride">5000-7500</option>
@@ -71,11 +71,11 @@
           </select>
         </section>
         
-        <a class="vindautobutton" href="./zoek.ejs">Vind auto</a>
+       <button class="button_whiteborder">Vind auto</button>
     </article>
     </fieldset>
 
-    <article class="hoofd-tekst">
+    <article>
       <h2>CarMatch</h2>
       <p>
         Welkom bij CarMatch! Ben je op zoek naar een auto, maar heb je geen

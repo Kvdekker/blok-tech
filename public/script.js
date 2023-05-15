@@ -1,8 +1,18 @@
-const hamburger = document.querySelector(".hamburger");
-const navButton = document.querySelector(".navbutton");
+const hambuger_menu = document.querySelector(".hambuger_menu");
+const nav_buttons = document.querySelector(".nav_buttons");
+const selecteer = document.querySelectorAll("select");
 
-hamburger.addEventListener("click", function () {
-  hamburger.classList.toggle("active");
-  navButton.classList.toggle("active");
+hambuger_menu.addEventListener("click", function () {
+  hambuger_menu.classList.toggle("active");
+  nav_buttons.classList.toggle("active");
 });
 
+selecteer.forEach(function (selecteer) {
+  selecteer.addEventListener("change", function () {
+    if (this.value != "") {
+      this.classList.add("isgeselecteerd");
+    } else {
+      this.classList.remove("isgeselecteerd");
+    }
+  });
+});
