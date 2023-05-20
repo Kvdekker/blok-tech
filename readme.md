@@ -1,29 +1,33 @@
 # CarMatch
 
-CarMatch is een applicatie waarmee gebruikers auto's kunnen zoeken en filteren op basis van hun voorkeuren en criteria. Het doel van de app is om gebruikers te helpen bij het vinden van de perfecte auto die past bij hun behoeften en budget.
+CarMatch is een applicatie waarmee gebruikers auto's kunnen zoeken en filteren op basis van hun voorkeuren en criteria. Het doel van de app is om elk gebruiker te helpen bij het vinden van de perfecte auto die past bij hun behoeften.
 
 ## Functionaliteiten
 
-- Zoeken en filteren: Gebruikers kunnen zoeken naar auto's op basis van merk, model, prijs, kilometerstand en andere relevante criteria.
-- Gedetailleerde informatie: De app biedt gedetailleerde informatie over elke auto, inclusief specificaties, foto's en contactgegevens van de verkoper.
-- Gebruikersaccounts: Gebruikers kunnen een account aanmaken en hun favoriete auto's opslaan, recente zoekopdrachten bekijken en meldingen ontvangen over nieuwe aanbiedingen.
-- Responsief ontwerp: De app is ontworpen om goed te werken op verschillende apparaten, zoals desktops, smartphones en tablets.
-- Simpel design: Het app desgin is simpel gedesigned zodat gebruikers die geen kennis hebben van auto's ook overweg kunnen met deze app.
+- Zoeken en filteren: Gebruikers kunnen auto's zoeken op basis van merk en type auto.
+- Informatie: De app biedt informatie over elke auto, inclusief het merk, model, jaar en type auto.
+- Gebruikersaccounts: Gebruikers kunnen een account aanmaken.
+- Responsief ontwerp: De app is ontworpen met een responsive layout, zodat gebruikers deze kunnen gebruiken op verschillende apparaten, zoals desktops, smartphones en tablets.
+- Eenvoudig en intuïtief ontwerp: Het ontwerp van de app is gebruiksvriendelijk en eenvoudig, waardoor gebruikers gemakkelijk kunnen navigeren en de gewenste auto's kunnen vinden.
 
 ## Technologieën
 
-De Auto Matching App is ontwikkeld met behulp van de volgende technologieën en frameworks:
+CarMatch maakt gebruik van de volgende technologieën:
 
-- Front-end: HTML, CSS, JavaScript
-- Back-end: Node.js met Express en EJS
-- Database: 
+- Front-end: HTML, (S)CSS, JavaScript
+- Back-end: Node.js met Express.js framework
+- Database: MongoDB voor het opslaan van gebruikersgegevens en auto-informatie
+- API's: Gebruik van externe API's voor het verkrijgen van auto-informatie en afbeeldingen
+- Authenticatie: Gebruik van JWT (JSON Web Tokens) voor gebruikersauthenticatie en -autorisatie
+
+## Installatie en gebruik
+
+1. Clone de repository naar je lokale machine.
+2. Installeer de vereiste dependencies met behulp van het commando `npm install`.
+3. Configureer de omgevingsvariabelen in een `.env`-bestand, inclusief databaseverbinding en API-sleutels.
+4. Start de server met het commando `npm start`.
+5. Open de applicatie in je webbrowser op `http://localhost:3000`.
 
 ## Licentie
 
-De Auto Matching App is gelicentieerd onder de MIT-License
-
-## Contact
-
-Als je vragen, suggesties of opmerkingen hebt over de Auto Matching App, neem dan gerust contact met mij op. Je kunt mij bereiken via Teams.
-
-KOEN DEKKER
+Dit project is gelicentieerd onder de [MIT-licentie](LICENSE).
