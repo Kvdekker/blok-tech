@@ -1,5 +1,4 @@
 ![Untitled-1](https://github.com/Kvdekker/blok-tech/assets/96053886/69f8a12f-a808-41a9-8db4-579c92590988)
-
 CarMatch is een applicatie waarmee gebruikers auto's kunnen zoeken en filteren op basis van hun voorkeuren en criteria. Het doel van de app is om elk gebruiker te helpen bij het vinden van de perfecte auto die past bij hun behoeften.
 
 ## Functionaliteiten
