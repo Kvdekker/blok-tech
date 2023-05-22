@@ -13,11 +13,11 @@ CarMatch is een applicatie waarmee gebruikers auto's kunnen zoeken en filteren o
 
 CarMatch maakt gebruik van de volgende technologieën:
 
-- Front-end: HTML, (S)CSS, JavaScript
-- Back-end: Node.js met Express.js framework
-- Database: MongoDB voor het opslaan van gebruikersgegevens en auto-informatie
-- API's: Gebruik van externe API's voor het verkrijgen van auto-informatie en afbeeldingen
-- Authenticatie: Gebruik van JWT (JSON Web Tokens) voor gebruikersauthenticatie en -autorisatie
+- Front-end: HTML, (S)CSS, JavaScript.
+- Back-end: Node.js met Express.js framework.
+- Database: MongoDB voor het opslaan van gebruikersgegevens en auto-informatie.
+- API's: Gebruik van externe API's voor het verkrijgen van auto-informatie en afbeeldingen.
+- Authenticatie: Gebruik van JWT (JSON Web Tokens) voor gebruikersauthenticatie en -autorisatie.
 
 ## Installatie en gebruik
 
