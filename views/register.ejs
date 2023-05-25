@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <title>Register</title>
+
+  <head>
+    <%- include ('partials/head.ejs') %>
+  </head>
+
+  <body >
+    <header><%- include ('partials/header.ejs') %></header>
+
+    <main class="register_main">
+      <article>
+        <form action="/register" method="post" class="register-form">
+          <h2>Registreren</h2>
+          <label for="Gebruikersnaam">Gebruikersnaam</label>
+          <input type="text" id="gebruikersnaam" name="gebruikersnaam" />
+          <label for="Wachtwoord">Wachtwoord</label>
+          <input type="password" id="wachtwoord" name="wachtwoord" />
+          <button class="button_whiteborder"" type="submit">Registreren</button>
+          <p><i>*Door op registreren te drukken ga ik akkoord met het feit dat het wachtwoord zichtbaar is voor de developer*</i></p>
+        </form>
+
+      </article>
+    </main>
+
+    <footer><%- include ('partials/footer.ejs') %></footer>
+  </body>
+  <%- include ('script.ejs') %>
+</html>

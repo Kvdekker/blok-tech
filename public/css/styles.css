@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: Montserrat, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 20px;
 }
 
@@ -31,8 +31,10 @@ nav {
   justify-content: space-between;
 }
 
-.nav_buttons {
-  display: none;
+@media (max-width: 500px) {
+  nav {
+    padding: 1em;
+  }
 }
 .nav_buttons img {
   width: 1.7em;
@@ -44,26 +46,15 @@ nav {
   font-weight: bold;
 }
 
-@media (min-width: 500px) {
-  .nav_buttons {
-    display: block;
-  }
-}
-.nav_buttons.active {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto auto;
-  flex-direction: row;
-}
-
 .logo {
   justify-self: start;
+  filter: invert(1);
   width: 10em;
 }
 
 .nav_buttons_login {
   border: solid 2px #007bff;
-  border-radius: 20px;
+  border-radius: 10px;
   padding: 5px 30px;
   color: #007bff;
 }
@@ -88,7 +79,7 @@ nav {
 .line {
   width: 25px;
   height: 3px;
-  background-color: rgb(45, 45, 45);
+  background-color: white;
   margin: 5px 0;
 }
 
@@ -188,6 +179,64 @@ legend {
   display: none;
 }
 
+.zoekresultaten-main {
+  background-color: #ffffff;
+  opacity: 1;
+  background: linear-gradient(135deg, rgba(0, 141, 255, 0.3333333333) 25%, transparent 25%) -40px 0/80px 80px, linear-gradient(225deg, #008dff 25%, transparent 25%) -40px 0/80px 80px, linear-gradient(315deg, rgba(0, 141, 255, 0.3333333333) 25%, transparent 25%) 0px 0/80px 80px, linear-gradient(45deg, #008dff 25%, #ffffff 25%) 0px 0/80px 80px;
+}
+
+.zoekresultaten-main article {
+  padding: 2em 2em 8em 2em;
+  background-color: rgb(255, 255, 255);
+}
+.zoekresultaten-main article h1 {
+  font-weight: bold;
+  font-size: 40px;
+  margin: 1.2em 0 0.5em 0;
+}
+.zoekresultaten-main article p {
+  margin-bottom: 20em;
+}
+
+.zoekresultaten-listitem {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  list-style: none;
+  margin-bottom: 1em;
+  padding: 1em;
+  background-color: rgb(91, 91, 91);
+  color: white;
+}
+
+.zoekresultaten-listitem li:first-child {
+  font-weight: bold;
+}
+
+@media (min-width: 500px) {
+  .zoekresultaten-main article section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1em;
+  }
+}
+@media (min-width: 800px) {
+  .zoekresultaten-main article {
+    margin: 1em 10em 0em 10em;
+  }
+  .zoekresultaten-main article section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1em;
+  }
+}
+@media (min-width: 1200px) {
+  .zoekresultaten-main article section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
 .error_main {
   margin: 10em 10em 20em 10em;
 }
@@ -210,11 +259,52 @@ legend {
   margin-bottom: 1em;
 }
 .login_main h2 {
+  margin-bottom: 0.5em;
   color: white;
+}
+.login_main a {
+  align-self: center;
+  color: white;
+}
+
+.register_main {
+  background-image: url("/images/carsparked.png");
+  background-size: cover;
+  background-position: center;
+  padding: 2em;
+}
+.register_main form {
+  background-color: #007bff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  margin: 10em 0.5em 20em 0.5em;
+  padding: 2em;
+}
+.register_main input {
+  margin-bottom: 1em;
+}
+.register_main h2 {
+  margin-bottom: 0.5em;
+  color: white;
+  font-size: 30px;
+}
+.register_main a {
+  align-self: center;
+  color: white;
+}
+.register_main i {
+  color: white;
+}
+.register_main p {
+  align-self: center;
 }
 
 @media (min-width: 500px) {
   .login_main form {
+    margin: 10em 3em 20em 3em;
+  }
+  .register_main form {
     margin: 10em 3em 20em 3em;
   }
 }
@@ -222,28 +312,45 @@ legend {
   .login_main form {
     margin: 10em 10em 20em 10em;
   }
+  .register_main form {
+    margin: 10em 10em 20em 10em;
+  }
 }
 @media (min-width: 1200px) {
   .login_main form {
+    margin: 10em 20em 20em 20em;
+  }
+  .register_main form {
     margin: 10em 20em 20em 20em;
   }
 }
 .user_main {
   margin-top: 10em;
   display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.user_main h1 {
+  font-size: 40px;
+}
+.user_main h2 {
+  margin: 1em 1em 0em 1em;
+  font-size: 30px;
+  color: rgb(45, 45, 45);
+}
+.user_main article {
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
-.user_main h2 {
-  color: rgb(45, 45, 45);
-}
 .user_main p {
-  padding: 2em 1em 0.2em 1em;
+  padding: 0.5em 1em 0.2em 1em;
 }
 
 /* De dropdownmenus */
 select {
   border: none;
+  color: rgb(45, 45, 45);
   padding: 5px;
   margin: 5px 0 15px 0;
   border-radius: 10px;
@@ -278,21 +385,20 @@ label {
   text-decoration: none;
 }
 
-/* Bij klein scherm */
-/* Bij middel scherm */
 /* Footer */
 footer {
   background-color: rgb(45, 45, 45);
   padding: 1em 2em 1em 2em;
   position: relative;
-  bottom: 0;
   width: 100%;
   position: absolute;
+  bottom: 0;
 }
 footer p {
   color: rgb(255, 255, 255);
-  padding-bottom: 0.2em;
+  font-size: 15px;
 }
 footer a {
   color: rgb(255, 255, 255);
+  font-size: 15px;
 }/*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <title>Log in</title>
+
+  <head>
+    <%- include ('partials/head.ejs') %>
+  </head>
+
+  <body >
+    <header><%- include ('partials/header.ejs') %></header>
+
+    <main class="login_main">
+      <article>
+        <form action="/login" method="post" class="login-form">
+          <h2>Inloggen</h2>
+          <label for="Gebruikersnaam">Gebruikersnaam</label>
+          <input type="text" id="gebruikersnaam" name="gebruikersnaam" />
+          <label for="Wachtwoord">Wachtwoord</label>
+          <input type="password" id="wachtwoord" name="wachtwoord" />
+          <a href="/register">Klik hier om je te registreren</a>
+          <button class="button_whiteborder"" type="submit">Inloggen</button>
+        </form>
+
+      </article>
+    </main>
+
+    <footer><%- include ('partials/footer.ejs') %></footer>
+  </body>
+  <%- include ('script.ejs') %>
+</html>

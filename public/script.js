@@ -1,11 +1,30 @@
-const hambuger_menu = document.querySelector(".hambuger_menu");
-const nav_buttons = document.querySelector(".nav_buttons");
-const selecteer = document.querySelectorAll("select");
+const zoekKnop = document.getElementById("searchButton");
 
-hambuger_menu.addEventListener("click", function () {
-  hambuger_menu.classList.toggle("active");
-  nav_buttons.classList.toggle("active");
+console.log("Script geladen");
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Wachten tot het DOM is geladen voordat de code wordt uitgevoerd
+  console.log("DOMContentLoaded event afgevuurd");
+
+  zoekKnop.addEventListener("click", function (event) {
+    // Voorkomen dat het standaardgedrag van het klikken op de zoekknop wordt uitgevoerd
+    event.preventDefault();
+
+    // Het ophalen van de geselecteerde autotype en automerk uit de HTML-elementen
+    const selectedCarType = document.getElementById("soort-auto").value;
+    const selectedCarBrand = document.getElementById("soort-merk").value;
+
+    // Doorsturen naar een nieuwe URL met de geselecteerde autotype en automerk als queryparameters
+    window.location.href =
+      "/zoekresultaten?soort-auto=" +
+      selectedCarType +
+      "&soort-merk=" +
+      selectedCarBrand;
+  });
 });
+
+// Voor het groen maken van de selects op de homepagina
+const selecteer = document.querySelectorAll("select");
 
 selecteer.forEach(function (selecteer) {
   selecteer.addEventListener("change", function () {
