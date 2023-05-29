@@ -15,8 +15,9 @@
         <fieldset>
           <legend>De CarMatch zoekmachine</legend>
           <section>
-            <label for="soort-auto">Soort auto?</label>
-            <select name="soort-auto" id="soort-auto">
+            <label for="car-type">Soort auto?</label>
+            <select name="car-type" id="car-type">
+              <option value="#">--Soort auto--</option>
               <option value="Sedan">Sedan</option>
               <option value="Hatchback">Hatchback</option>
               <option value="SUV">SUV</option>
@@ -26,8 +27,9 @@
               <option value="Wagon">Wagon</option>
             </select>
 
-            <label for="soort-merk">Welk merk spreekt je aan?</label>
-            <select name="soort-merk" id="soort-merk">
+            <label for="car-brand">Welk merk spreekt je aan?</label>
+            <select name="car-brand" id="car-brand">
+              <option value="#">--Merk--</option>
               <option value="Audi">Audi</option>
               <option value="BMW">BMW</option>
               <option value="Ford">Ford</option>
@@ -44,7 +46,7 @@
             </select>
           </section>
 
-          <form action="/zoekresultaten" method="get">
+          <form action="/carlist" method="get">
             <button id="searchButton" class="button_whiteborder" type="submit">
               Vind auto
             </button>

@@ -1,42 +1,42 @@
-const express = require("express");
-const app = express();
-const bodyparser = require("body-parser"); // nodig om HTTP-verzoekbodies te analyseren, bijvoorbeeld voor het verwerken van gegevens van een HTML-formulier
-const session = require("express-session"); // nodig om sessies te gebruiken
-const ejs = require("ejs");
-const compression = require("compression"); //Deze module is een middleware voor Express die compressie toepast op de HTTP-responsen. Het helpt bij het verkleinen van de bestandsgrootte van de verzonden gegevens
-const Parse = require("parse/node"); //biedt een Node.js Software development kit waarmee je verbinding kunt maken met en interactie kunt hebben met de Parse-server vanuit een Node.js-omgeving
-require("dotenv").config(); //Use dotenv to read .env
+const express = require("express"); // Importeer de 'express' module, waarmee we een webserver kunnen maken.
+const app = express(); // Initialiseer een Express-applicatie.
 
-const AppID = process.env.APPID; //Haal ww uit .env
-const JavascriptKey = process.env.JSKEY; //Haal ww uit .env
-Parse.serverURL = "https://parseapi.back4app.com"; //API server url
-Parse.initialize(AppID, JavascriptKey);
+const bodyparser = require("body-parser"); // Importeer de 'body-parser' module, die HTTP-verzoeklichamen analyseert.
+const session = require("express-session"); // Importeer de 'express-session' module, die sessiebeheer mogelijk maakt.
+const ejs = require("ejs"); // Importeer de 'ejs' module, die ons in staat stelt sjablonen te gebruiken voor het genereren van HTML-pagina's.
+const compression = require("compression"); // Importeer de 'compression' module, die response-compressie biedt voor verbeterde prestaties.
+const Parse = require("parse/node"); // Importeer de 'parse/node' module, die het Parse-platform voor backend-services mogelijk maakt.
+const bcrypt = require("bcrypt"); // Importeer de 'bcrypt' module, die functies biedt voor het hashen en vergelijken van passworden.
 
-// ************************//
-// Eerst alle uses doen
-// ************************//
-app.use(bodyparser.urlencoded({ extended: true }));
+require("dotenv").config();
+
+// Parse Server configuratie
+const AppID = process.env.APPID; // Parse-app-ID uit de omgevingsvariabele
+const JavascriptKey = process.env.JSKEY; // Parse-JavaScript-sleutel uit de omgevingsvariabele
+const ParseServerURL = process.env.API_SERVERURL; // Parse Server URL uit de omgevingsvariabele
+
+Parse.serverURL = ParseServerURL; // Parse Server URL instellen
+Parse.initialize(AppID, JavascriptKey); // Parse-initialisatie met App ID en JavaScript-sleutel
+
+// Middleware configuratie
+app.use(bodyparser.urlencoded({ extended: true })); // body-parser middleware voor het analyseren van aanvraagbody's
 app.use(
   session({
-    secret: "geheim-woord",
+    secret: process.env.SESSION_SECRET, // Geheime sleutel voor het beveiligen van de sessie
     resave: false,
     saveUninitialized: false,
   })
 );
 app.use((req, res, next) => {
-  res.locals.isIngelogd = req.session.isIngelogd;
+  res.locals.isLoggedIn = req.session.isLoggedIn; // Lokale variabele voor het bijhouden van de sessiestatus
   next();
 });
+app.use(compression()); // compressie van de respons voor betere prestaties
+app.use(express.static("public")); // Statische bestanden (CSS, afbeeldingen, enz.) serveren vanuit de "public" map
 
-app.use(compression());
-app.use(express.static("public"));
-
-// ************************//
-//MongoDB
-// ************************//
+// MongoDB configuratie
 const { MongoClient, ServerApiVersion } = require("mongodb");
-const uri = process.env.MONGODB_URI;
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
+const uri = process.env.MONGODB_URI; // MongoDB-verbinding URI uit de omgevingsvariabele
 const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
@@ -45,166 +45,204 @@ const client = new MongoClient(uri, {
   },
 });
 
-async function run() {
+// MongoDB verbinding maken
+async function connectMongoDB() {
   try {
-    // Connect the client to the server
-    await client.connect();
-    // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
-    console.log(
-      "Pinged your deployment. You successfully connected to MongoDB!"
-    );
+    await client.connect(); // Verbinding maken met de MongoDB-database
+    await client.db("admin").command({ ping: 1 }); // Ping de database om te controleren of de verbinding succesvol is
+    console.log("Verbonden met MongoDB!");
   } finally {
-    console.log("You have been connected to the database, YAY!");
-    // Ensures that the client will close when you finish/error
+    console.log("Je bent verbonden met de database!");
   }
 }
-run().catch(console.dir);
+connectMongoDB().catch(console.dir);
 
-// ************************//
-// Weergave engine
-// ************************//
-app.set("view engine", "ejs");
-app.set("views", "views");
-app.set("partials", "partials");
+// Weergave engine configuratie
+app.set("view engine", "ejs"); // Instellen van EJS als de weergave-engine
+app.set("views", "views"); // Map voor de weergavesjablonen
 
-// ************************//
-// Homepagina
-// ************************//
+// Homepagina route
 app.get("/home", (req, res) => {
-  const isIngelogd = req.session.isIngelogd;
-  res.render("index");
+  const isLoggedIn = req.session.isLoggedIn; // Controleren of de user is ingelogd
+  res.render("index"); // Het index.ejs sjabloon renderen
 });
 
-// ************************//
-// login
-// ************************//
+// Login routes
 app.get("/login", (req, res) => {
-  res.render("login");
+  res.render("login", { loginFailed: "" }); // Het login.ejs sjabloon renderen met een optioneel bericht voor mislukte login
 });
 
-const gebruikers = [
-  { gebruikersnaam: "admin", wachtwoord: "password" },
-  { gebruikersnaam: "Koen", wachtwoord: "password" },
-  { gebruikersnaam: "Ivo", wachtwoord: "password" },
-  { gebruikersnaam: "Robert", wachtwoord: "password" },
-];
+app.post("/login", async (req, res) => {
+  const { username, password } = req.body; // username en password ophalen uit het aanvraaglichaam
 
-app.post("/login", (req, res) => {
-  // Haal de gebruikersnaam en het wachtwoord op uit het verzoek
-  const gebruikersnaam = req.body.gebruikersnaam;
-  const wachtwoord = req.body.wachtwoord;
-
-  // Controleer of de gebruiker al is ingelogd, indien ja, stuur naar de homepagina
-  if (req.session.isIngelogd) {
-    return res.redirect("/home");
-  }
-
-  // Zoek de gebruiker in de lijst van gebruikers op basis van gebruikersnaam en wachtwoord
-  const gebruiker = gebruikers.find(
-    (gebruiker) =>
-      gebruiker.gebruikersnaam === gebruikersnaam &&
-      gebruiker.wachtwoord == wachtwoord
-  );
-
-  // Als de gebruiker is gevonden, stel de sessiegegevens in en stuur naar de gebruikerspagina
-  if (gebruiker) {
-    req.session.isIngelogd = true;
-    req.session.username = gebruikersnaam;
-    res.redirect("/user");
-  } else {
-    // Als de gebruiker niet is gevonden, stuur een foutmelding
-    res.send("Verkeerde inloggegevens");
-  }
-});
-
-// ************************//
-//User pagina
-// ************************//
-app.get("/user", (req, res) => {
-  const gebruikersnaam = req.session.username;
-
-  res.render("user", { gebruikersnaam });
-});
-
-// ************************//
-//Register
-// ************************//
-app.get("/register", (req, res) => {
-  res.render("register");
-});
-
-// ************************//
-//Logout
-// ************************//
-app.post("/logout", (req, res) => {
-  req.session.destroy();
-  res.redirect("/home");
-});
-
-// ************************//
-// zoekresultaten
-// ************************//
-app.get("/zoekresultaten", async function (req, res) {
   try {
-    // Haal de geselecteerde autotype en automerk op uit de queryparameters van de request
-    const selectedCarType = req.query["soort-auto"];
-    const selectedCarBrand = req.query["soort-merk"];
+    const collection = client.db("register").collection("users"); // Verwijzing naar de userscollectie in MongoDB
+    const user = await collection.findOne({ username }); // De user opzoeken in de database
 
-    // Definieer een Parse-object voor de klasse "Carmodels_Car_Model_List"
+    if (user) {
+      const match = await bcrypt.compare(password, user.password); // Het ingevoerde password vergelijken met de gehashte versie in de database
+      if (match) {
+        req.session.isLoggedIn = true; // Sessie markeren als ingelogd
+        req.session.username = username; // username opslaan in de sessie
+        return res.redirect("/user"); // Doorsturen naar de userspagina
+      }
+    }
+
+    res.render("login", {
+      loginFailed: "Deze username en/of password is onjuist!", // Foutbericht weergeven op de loginpagina
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Er is een fout opgetreden bij het inloggen"); // Foutbericht weergeven als er een fout optreedt
+  }
+});
+
+// User pagina routes
+app.get("/user", (req, res) => {
+  const username = req.session.username; // username ophalen uit de sessie
+  res.render("user", { username }); // Het user.ejs sjabloon renderen en de username doorgeven aan de weergave
+});
+
+app.post("/user/delete", async (req, res) => {
+  const username = req.session.username; // username ophalen uit de sessie
+
+  try {
+    const collection = client.db("register").collection("users"); // Verwijzing naar de userscollectie in MongoDB
+    await collection.deleteOne({ username }); // Het usersaccount verwijderen uit de database
+
+    req.session.destroy(); // Sessie vernietigen
+
+    res.redirect("/home"); // Terugsturen naar de homepagina
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .send("Er is een fout opgetreden bij het verwijderen van het account"); // Foutbericht weergeven als er een fout optreedt
+  }
+});
+app.post("/user/update-username", async (req, res) => {
+  // Endpoint voor het bijwerken van de username via een POST-verzoek
+  const username = req.session.username;
+  // De huidige username wordt opgehaald uit de sessie
+
+  const newUsername = req.body.newUsername;
+  // De nieuwe username wordt opgehaald uit het verzoeklichaam (request body)
+
+  try {
+    const collection = client.db("register").collection("users");
+    // De collectie "users" in de MongoDB-database wordt geopend
+
+    await collection.updateOne(
+      { username: username },
+      { $set: { username: newUsername } }
+    );
+    // Een update-operatie wordt uitgevoerd om de username bij te werken.
+    // De username in de collectie wordt vervangen door de nieuwe username
+
+    req.session.username = newUsername;
+    // De nieuwe username wordt bijgewerkt in de sessie
+
+    res.redirect("/user");
+    // De gebruiker wordt doorgestuurd naar de "user" pagina
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .send("Er is een fout opgetreden bij het bijwerken van de username");
+    // Als er een fout optreedt, wordt een foutstatus verzonden met een foutbericht
+  }
+});
+
+// Register routes
+app.get("/register", (req, res) => {
+  res.render("register", { userExistsMessage: "", successMessage: "" }); // Het register.ejs sjabloon renderen met optionele berichten voor bestaande user en succesvolle registratie
+});
+
+app.post("/register", async (req, res) => {
+  const { username, password } = req.body; // username en password ophalen uit het aanvraaglichaam
+
+  try {
+    const collection = client.db("register").collection("users"); // Verwijzing naar de userscollectie in MongoDB
+    const existingUser = await collection.findOne({ username }); // Controleren of de user al bestaat in de database
+
+    if (existingUser) {
+      return res.render("register", {
+        userExistsMessage: "Deze user bestaat al!", // Foutbericht weergeven op de registratiepagina
+        successMessage: "",
+      });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10); // Het password hashen met bcrypt
+    const newUser = {
+      username,
+      password: hashedPassword,
+    };
+
+    await collection.insertOne(newUser); // Het nieuwe usersaccount toevoegen aan de database
+
+    return res.render("register", {
+      userExistsMessage: "",
+      successMessage: "Je bent succesvol geregistreerd!", // Succesbericht weergeven op de registratiepagina
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Er is een fout opgetreden bij de registratie"); // Foutbericht weergeven als er een fout optreedt
+  }
+});
+
+// Logout route
+app.post("/logout", (req, res) => {
+  req.session.destroy(); // Sessie vernietigen
+  res.redirect("/home"); // Terugsturen naar de homepagina
+});
+
+// Carlist route
+app.get("/carlist", async function (req, res) {
+  try {
+    const selectedCarType = req.query["car-type"]; // Geselecteerd auto-type ophalen uit queryparameters
+    const selectedCarBrand = req.query["car-brand"]; // Geselecteerd automerk ophalen uit queryparameters
+
     const Carmodels_Car_Model_List = Parse.Object.extend(
       "Carmodels_Car_Model_List"
     );
 
-    // Maak een query voor objecten van de klasse "Carmodels_Car_Model_List"
     const query = new Parse.Query(Carmodels_Car_Model_List);
 
-    // Voeg voorwaarden toe aan de query om alleen auto's van het geselecteerde merk en type op te halen
-    query.equalTo("Make", selectedCarBrand);
-    query.equalTo("Category", selectedCarType);
+    query.equalTo("Make", selectedCarBrand); // Filteren op automerk
+    query.equalTo("Category", selectedCarType); // Filteren op auto-type
 
-    // Voer de query uit en wacht op het resultaat
-    const results = await query.find();
+    const results = await query.find(); // Query uitvoeren
 
-    // Maak een lijst van auto-objecten op basis van de queryresultaten
     const carList = results.map((object) => {
       return {
-        make: object.get("Make"), // Haal de waarde van het veld "Make" op
-        year: object.get("Year"), // Haal de waarde van het veld "Year" op
-        model: object.get("Model"), // Haal de waarde van het veld "Model" op
-        category: object.get("Category"), // Haal de waarde van het veld "Category" op
+        make: object.get("Make"),
+        year: object.get("Year"),
+        model: object.get("Model"),
+        category: object.get("Category"),
       };
     });
 
-    // Rendert de "zoekresultaten" view en stuurt de auto-lijst naar de view
-    res.render("zoekresultaten", { carList });
+    res.render("carlist", { carList }); // Het carlist.ejs sjabloon renderen en de autolijst doorgeven aan de weergave
   } catch (error) {
-    // Als er een fout optreedt, log de fout en stuur een HTTP 500-foutmelding terug met een foutbericht
     console.error(error);
     res
       .status(500)
-      .send("Er is een fout opgetreden bij het ophalen van de gegevens.");
+      .send("Er is een fout opgetreden bij het ophalen van de gegevens."); // Foutbericht weergeven als er een fout optreedt
   }
 });
 
-// ************************//
-// Error 404
-// ************************//
+// Error 404 route
 app.use(function (req, res) {
   res.status(404);
-  res.render("error");
+  res.render("error"); // Het error.ejs sjabloon renderen bij een 404-fout
 });
 
-// ************************//
-// Render errorpage
-// ************************//
+// Errorpage route
 app.get("/error", (req, res) => {
-  res.render("<h1>ERROR 404 NOT FOUND</h1>");
+  res.render("<h1>ERROR 404 NOT FOUND</h1>"); // Een eenvoudige foutpagina weergeven voor /error route
 });
 
-// ************************//
-// Server has started text
-// ************************//
+// Start de server
 app.listen(3000, () => {
-  console.log("Whats up! The server has started on port 3000. Have fun!");
+  console.log("De server is gestart op poort 3000. Veel plezier!"); // Server starten en een bericht weergeven wanneer de server actief is
 });

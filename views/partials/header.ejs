@@ -4,12 +4,9 @@
   </a>
 
   <section class="nav_buttons">
-    <% if(isIngelogd) { %>
-    <a href="https://www.example.com"
-      ><img src="/images/bookmark.png" alt="Lijst"
-    /></a>
+    <% if(isLoggedIn) { %>
     <a href="/user"
-      ><img class="user_img" src="/images/user.png" alt="Gebruiker"
+      ><img class="user_img" src="/images/user.png" alt="user"
     /></a>
     <% }else{ %>
     <a class="nav_buttons_login" href="/login">Login</a>

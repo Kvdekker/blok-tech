@@ -13,12 +13,13 @@
       <article>
         <form action="/login" method="post" class="login-form">
           <h2>Inloggen</h2>
-          <label for="Gebruikersnaam">Gebruikersnaam</label>
-          <input type="text" id="gebruikersnaam" name="gebruikersnaam" />
-          <label for="Wachtwoord">Wachtwoord</label>
-          <input type="password" id="wachtwoord" name="wachtwoord" />
+          <label for="username">username</label>
+          <input type="text" id="username" name="username" />
+          <label for="password">password</label>
+          <input type="password" id="password" name="password" />
           <a href="/register">Klik hier om je te registreren</a>
           <button class="button_whiteborder"" type="submit">Inloggen</button>
+          <div class="wrong_login"><%- loginFailed %></div>
         </form>
 
       </article>
@@ -28,3 +29,4 @@
   </body>
   <%- include ('script.ejs') %>
 </html>
+ 

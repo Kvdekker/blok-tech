@@ -17,14 +17,16 @@ $footercolor: rgb(45, 45, 45);
 $buttoncolor: #007bff;
 $buttonfontcolor: rgb(255, 255, 255);
 $hoofdtekstcolor: rgb(45, 45, 45);
-$hambuger_menu: rgb(45, 45, 45);
 $hoofdtekstcolorfont: white;
 $zoekuitslagkleur: rgb(91, 91, 91);
+$deletecolor: rgb(75 0 0);
+$red: rgb(255, 0, 0);
+$green: rgb(0, 220, 0);
 
 body {
   color: $fontcolor;
   position: relative;
-  min-height: 100vh;
+  // min-height: 90vh;
 }
 
 /* Begin navbar */
@@ -87,39 +89,6 @@ nav {
   grid-row: 1 / span 2;
 }
 
-/* hambuger_menu menu */
-.hambuger_menu {
-  justify-self: end;
-  cursor: pointer;
-}
-
-@media (min-width: 500px) {
-  .hambuger_menu {
-    display: none;
-    cursor: pointer;
-  }
-}
-
-.line {
-  width: 25px;
-  height: 3px;
-  background-color: white;
-  margin: 5px 0;
-}
-
-.hambuger_menu.active .line:nth-child(2) {
-  opacity: 0;
-}
-
-.hambuger_menu.active .line:nth-child(1) {
-  transform: rotate(45deg) translate(6px, 6px);
-}
-
-.hambuger_menu.active .line:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
-}
-/* Einde navbar */
-
 // Algemeen
 h2 {
   font-size: 40px;
@@ -129,19 +98,18 @@ h2 {
 /* Begin main */
 
 .index_main {
-  margin-top: 2em;
-  padding: 2em 0 7em 0;
+  padding-top: 3em;
 
   display: flex;
   flex-direction: column;
 
-  background-image: url("/images/cars-red-car-parking.png");
+  background-image: url("/images/car1.png");
   background-size: auto auto;
   background-position: center;
 
   // Vind auto sectie//
   article:first-of-type {
-    margin: 1em 20px;
+    margin: 3em 20px 1em 20px;
     padding: 1em;
     background: $buttoncolor;
 
@@ -165,7 +133,7 @@ h2 {
 
   article:nth-of-type(2) {
     width: fit-content;
-    margin: 1em 20px;
+    margin: 3em 20px;
 
     p {
       color: $hoofdtekstcolorfont;
@@ -224,8 +192,8 @@ legend {
   display: none;
 }
 
-// zoekresultaten resultaten
-.zoekresultaten-main {
+// car-list resultaten
+.carlist-main {
   background-color: #ffffff;
   opacity: 1;
   background: linear-gradient(135deg, #008dff55 25%, transparent 25%) -40px 0/
@@ -235,8 +203,8 @@ legend {
     linear-gradient(45deg, #008dff 25%, #ffffff 25%) 0px 0/ 80px 80px;
   // MagicPattern. (z.d.). CSS Backgrounds. Geraadpleegd op 22 mei 2023, van https://www.magicpattern.design/tools/css-backgrounds
 }
-.zoekresultaten-main article {
-  padding: 2em 2em 8em 2em;
+.carlist-main article {
+  padding: 2em;
   background-color: $backgroundcolor;
   h1 {
     font-weight: bold;
@@ -248,7 +216,7 @@ legend {
   }
 }
 
-.zoekresultaten-listitem {
+.carlist-listitem {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -263,12 +231,12 @@ legend {
   color: $hoofdtekstcolorfont;
 }
 
-.zoekresultaten-listitem li:first-child {
+.carlist-listitem li:first-child {
   font-weight: bold;
 }
 
 @media (min-width: 500px) {
-  .zoekresultaten-main article {
+  .carlist-main article {
     section {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -278,7 +246,7 @@ legend {
 }
 
 @media (min-width: 800px) {
-  .zoekresultaten-main article {
+  .carlist-main article {
     margin: 1em 10em 0em 10em;
     section {
       display: grid;
@@ -289,7 +257,7 @@ legend {
 }
 
 @media (min-width: 1200px) {
-  .zoekresultaten-main article section {
+  .carlist-main article section {
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
@@ -302,7 +270,7 @@ legend {
 
 // login
 .login_main {
-  background-image: url("/images/carsparked.png");
+  background-image: url("/images/car2.png");
   background-size: cover;
   background-position: center;
   padding: 2em;
@@ -329,11 +297,18 @@ legend {
     align-self: center;
     color: $hoofdtekstcolorfont;
   }
+  .wrong_login {
+    color: $red;
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+  }
 }
 
 //Registreren
 .register_main {
-  background-image: url("/images/carsparked.png");
+  background-image: url("/images/car3.png");
   background-size: cover;
   background-position: center;
   padding: 2em;
@@ -361,11 +336,27 @@ legend {
     align-self: center;
     color: $hoofdtekstcolorfont;
   }
+
+  p {
+    color: $hoofdtekstcolorfont;
+    display: flex;
+  }
   i {
+    text-align: center;
+    font-size: 10px;
     color: $hoofdtekstcolorfont;
   }
-  p {
-    align-self: center;
+  .user_exists {
+    color: $red;
+    font-size: 15px;
+    font-weight: bold;
+  }
+  .success_message {
+    margin-top: 10px;
+    text-align: center;
+    color: $green;
+    font-size: 15px;
+    font-weight: bold;
   }
 }
 
@@ -397,10 +388,13 @@ legend {
 }
 
 //User
-.user_main {
-  margin-top: 10em;
+.user_main section:first-child {
+  padding-top: 6em;
+}
+.user_main section {
   display: flex;
   align-items: center;
+  text-align: center;
 
   flex-direction: column;
 
@@ -409,7 +403,7 @@ legend {
   }
 
   h2 {
-    margin: 1em 1em 0em 1em;
+    margin: 0em 1em 0em 1em;
     font-size: 30px;
     color: $footercolor;
   }
@@ -422,6 +416,40 @@ legend {
 
   p {
     padding: 0.5em 1em 0.2em 1em;
+  }
+}
+.user_main section:nth-child(2) {
+  background-color: $buttoncolor;
+  color: $hoofdtekstcolor;
+  padding: 1em;
+  h2 {
+    color: $hoofdtekstcolorfont;
+  }
+  input {
+    margin-top: 1em;
+  }
+}
+.user_main section:nth-child(3) {
+  background-color: $deletecolor;
+  color: $hoofdtekstcolorfont;
+  padding: 1em;
+  h2 {
+    color: $hoofdtekstcolorfont;
+  }
+}
+.user_main .delete_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  button {
+    margin-top: 1em;
+    padding: 0.5em 1em;
+    border-radius: 10px;
+    border: none;
+    font-weight: bold;
+    background-color: $red;
+    color: $hoofdtekstcolorfont;
   }
 }
 
@@ -437,8 +465,8 @@ select {
   width: 100%;
 }
 
-.isgeselecteerd {
-  border: 3px solid rgb(4, 214, 4);
+.is_selected {
+  border: 3px solid $green;
 }
 
 input {
@@ -478,7 +506,6 @@ footer {
   position: relative;
   width: 100%;
 
-  position: absolute;
   bottom: 0;
 
   p {

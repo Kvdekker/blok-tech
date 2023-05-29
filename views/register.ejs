@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <title>Register</title>
+  <title>Registeren</title>
 
   <head>
     <%- include ('partials/head.ejs') %>
@@ -11,15 +11,19 @@
 
     <main class="register_main">
       <article>
-        <form action="/register" method="post" class="register-form">
+        <form action="/register" method="post" class="register-form" id="registrationForm">
           <h2>Registreren</h2>
-          <label for="Gebruikersnaam">Gebruikersnaam</label>
-          <input type="text" id="gebruikersnaam" name="gebruikersnaam" />
-          <label for="Wachtwoord">Wachtwoord</label>
-          <input type="password" id="wachtwoord" name="wachtwoord" />
+          <label for="username">username</label>
+          <div class="user_exists"><%- userExistsMessage %></div>
+          <input type="text" id="username" name="username" />
+
+          <label for="password">password</label>
+          <input type="password" id="password" name="password" />
           <button class="button_whiteborder"" type="submit">Registreren</button>
-          <p><i>*Door op registreren te drukken ga ik akkoord met het feit dat het wachtwoord zichtbaar is voor de developer*</i></p>
+          <p><i>*Door op registreren te drukken ga ik akkoord met het feit dat het password mogelijk zichtbaar kan zijn voor de developer*</i></p>
+          <div class="success_message"><%- successMessage %></div>
         </form>
+        
 
       </article>
     </main>

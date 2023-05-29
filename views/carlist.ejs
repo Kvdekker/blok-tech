@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <title>Auto Lijst</title>
+
+  <head>
+    <%- include ('partials/head.ejs') %>
+  </head>
+
+  <body>
+    <header><%- include ('partials/header.ejs') %></header>
+
+    <main class="carlist-main">
+      <article>
+        <h1>Gevonden resultaten</h1>
+
+        <% if (carList && carList.length > 0) { %>
+        <section>
+          <% carList.forEach(function(car) { %>
+          <ul class="carlist-listitem">
+            <li><%= car.make %> <%= car.model %></li>
+            <li>Type: <%= car.category %></li>
+            <li>Bouwjaar: <%= car.year %></li>
+          </ul>
+          <% }); %>
+        </section>
+        <% } else { %>
+        <p>Geen auto's gevonden met deze criteria.</p>
+        <% } %>
+      </article>
+    </main>
+
+    <footer><%- include ('partials/footer.ejs') %></footer>
+  </body>
+  <%- include ('script.ejs') %>
+</html>

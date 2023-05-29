@@ -9,7 +9,6 @@
 body {
   color: rgb(48, 48, 48);
   position: relative;
-  min-height: 100vh;
 }
 
 /* Begin navbar */
@@ -64,38 +63,6 @@ nav {
   grid-row: 1/span 2;
 }
 
-/* hambuger_menu menu */
-.hambuger_menu {
-  justify-self: end;
-  cursor: pointer;
-}
-
-@media (min-width: 500px) {
-  .hambuger_menu {
-    display: none;
-    cursor: pointer;
-  }
-}
-.line {
-  width: 25px;
-  height: 3px;
-  background-color: white;
-  margin: 5px 0;
-}
-
-.hambuger_menu.active .line:nth-child(2) {
-  opacity: 0;
-}
-
-.hambuger_menu.active .line:nth-child(1) {
-  transform: rotate(45deg) translate(6px, 6px);
-}
-
-.hambuger_menu.active .line:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
-}
-
-/* Einde navbar */
 h2 {
   font-size: 40px;
   color: white;
@@ -103,16 +70,15 @@ h2 {
 
 /* Begin main */
 .index_main {
-  margin-top: 2em;
-  padding: 2em 0 7em 0;
+  padding-top: 3em;
   display: flex;
   flex-direction: column;
-  background-image: url("/images/cars-red-car-parking.png");
+  background-image: url("/images/car1.png");
   background-size: auto auto;
   background-position: center;
 }
 .index_main article:first-of-type {
-  margin: 1em 20px;
+  margin: 3em 20px 1em 20px;
   padding: 1em;
   background: #007bff;
   height: -moz-fit-content;
@@ -131,7 +97,7 @@ h2 {
 .index_main article:nth-of-type(2) {
   width: -moz-fit-content;
   width: fit-content;
-  margin: 1em 20px;
+  margin: 3em 20px;
 }
 .index_main article:nth-of-type(2) p {
   color: white;
@@ -179,26 +145,26 @@ legend {
   display: none;
 }
 
-.zoekresultaten-main {
+.carlist-main {
   background-color: #ffffff;
   opacity: 1;
   background: linear-gradient(135deg, rgba(0, 141, 255, 0.3333333333) 25%, transparent 25%) -40px 0/80px 80px, linear-gradient(225deg, #008dff 25%, transparent 25%) -40px 0/80px 80px, linear-gradient(315deg, rgba(0, 141, 255, 0.3333333333) 25%, transparent 25%) 0px 0/80px 80px, linear-gradient(45deg, #008dff 25%, #ffffff 25%) 0px 0/80px 80px;
 }
 
-.zoekresultaten-main article {
-  padding: 2em 2em 8em 2em;
+.carlist-main article {
+  padding: 2em;
   background-color: rgb(255, 255, 255);
 }
-.zoekresultaten-main article h1 {
+.carlist-main article h1 {
   font-weight: bold;
   font-size: 40px;
   margin: 1.2em 0 0.5em 0;
 }
-.zoekresultaten-main article p {
+.carlist-main article p {
   margin-bottom: 20em;
 }
 
-.zoekresultaten-listitem {
+.carlist-listitem {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -210,29 +176,29 @@ legend {
   color: white;
 }
 
-.zoekresultaten-listitem li:first-child {
+.carlist-listitem li:first-child {
   font-weight: bold;
 }
 
 @media (min-width: 500px) {
-  .zoekresultaten-main article section {
+  .carlist-main article section {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 1em;
   }
 }
 @media (min-width: 800px) {
-  .zoekresultaten-main article {
+  .carlist-main article {
     margin: 1em 10em 0em 10em;
   }
-  .zoekresultaten-main article section {
+  .carlist-main article section {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 1em;
   }
 }
 @media (min-width: 1200px) {
-  .zoekresultaten-main article section {
+  .carlist-main article section {
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
@@ -242,7 +208,7 @@ legend {
 }
 
 .login_main {
-  background-image: url("/images/carsparked.png");
+  background-image: url("/images/car2.png");
   background-size: cover;
   background-position: center;
   padding: 2em;
@@ -266,9 +232,16 @@ legend {
   align-self: center;
   color: white;
 }
+.login_main .wrong_login {
+  color: rgb(255, 0, 0);
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: center;
+}
 
 .register_main {
-  background-image: url("/images/carsparked.png");
+  background-image: url("/images/car3.png");
   background-size: cover;
   background-position: center;
   padding: 2em;
@@ -293,11 +266,26 @@ legend {
   align-self: center;
   color: white;
 }
+.register_main p {
+  color: white;
+  display: flex;
+}
 .register_main i {
+  text-align: center;
+  font-size: 10px;
   color: white;
 }
-.register_main p {
-  align-self: center;
+.register_main .user_exists {
+  color: rgb(255, 0, 0);
+  font-size: 15px;
+  font-weight: bold;
+}
+.register_main .success_message {
+  margin-top: 10px;
+  text-align: center;
+  color: rgb(0, 220, 0);
+  font-size: 15px;
+  font-weight: bold;
 }
 
 @media (min-width: 500px) {
@@ -324,27 +312,67 @@ legend {
     margin: 10em 20em 20em 20em;
   }
 }
-.user_main {
-  margin-top: 10em;
+.user_main section:first-child {
+  padding-top: 6em;
+}
+
+.user_main section {
   display: flex;
   align-items: center;
+  text-align: center;
   flex-direction: column;
 }
-.user_main h1 {
+.user_main section h1 {
   font-size: 40px;
 }
-.user_main h2 {
-  margin: 1em 1em 0em 1em;
+.user_main section h2 {
+  margin: 0em 1em 0em 1em;
   font-size: 30px;
   color: rgb(45, 45, 45);
 }
-.user_main article {
+.user_main section article {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.user_main p {
+.user_main section p {
   padding: 0.5em 1em 0.2em 1em;
+}
+
+.user_main section:nth-child(2) {
+  background-color: #007bff;
+  color: rgb(45, 45, 45);
+  padding: 1em;
+}
+.user_main section:nth-child(2) h2 {
+  color: white;
+}
+.user_main section:nth-child(2) input {
+  margin-top: 1em;
+}
+
+.user_main section:nth-child(3) {
+  background-color: rgb(75, 0, 0);
+  color: white;
+  padding: 1em;
+}
+.user_main section:nth-child(3) h2 {
+  color: white;
+}
+
+.user_main .delete_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.user_main .delete_form button {
+  margin-top: 1em;
+  padding: 0.5em 1em;
+  border-radius: 10px;
+  border: none;
+  font-weight: bold;
+  background-color: rgb(255, 0, 0);
+  color: white;
 }
 
 /* De dropdownmenus */
@@ -357,8 +385,8 @@ select {
   width: 100%;
 }
 
-.isgeselecteerd {
-  border: 3px solid rgb(4, 214, 4);
+.is_selected {
+  border: 3px solid rgb(0, 220, 0);
 }
 
 input {
@@ -391,7 +419,6 @@ footer {
   padding: 1em 2em 1em 2em;
   position: relative;
   width: 100%;
-  position: absolute;
   bottom: 0;
 }
 footer p {
