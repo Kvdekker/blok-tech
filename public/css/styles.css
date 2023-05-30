@@ -353,14 +353,7 @@ legend {
   }
 }
 .user_main section:nth-child(2) {
-  background-color: #007bff;
-  color: rgb(45, 45, 45);
-}
-.user_main section:nth-child(2) h2 {
-  color: white;
-}
-.user_main section:nth-child(2) input {
-  margin-top: 1em;
+  border: solid 3px #007bff;
 }
 .user_main section:nth-child(2) form {
   display: flex;
@@ -369,10 +362,26 @@ legend {
 }
 
 .user_main section:nth-child(3) {
+  background-color: #007bff;
+  color: rgb(45, 45, 45);
+}
+.user_main section:nth-child(3) h2 {
+  color: white;
+}
+.user_main section:nth-child(3) input {
+  margin-top: 1em;
+}
+.user_main section:nth-child(3) form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user_main section:nth-child(4) {
   background-color: rgb(75, 0, 0);
   color: white;
 }
-.user_main section:nth-child(3) h2 {
+.user_main section:nth-child(4) h2 {
   color: white;
 }
 

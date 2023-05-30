@@ -16,7 +16,8 @@ CarMatch maakt gebruik van de volgende technologieën:
 - Front-end: HTML, (S)CSS, JavaScript.
 - Back-end: Node.js met Express.js framework.
 - Database: MongoDB voor het opslaan van gebruikersgegevens en auto-informatie.
-- API: Gebruik van een externe API voor het verkrijgen van auto-informatie: https://www.back4app.com/database/back4app/car-make-model-dataset
+- API: Gebruik van een externe API voor het verkrijgen van auto-informatie: https://www.back4app.com/database/back4app/car-make-model-dataset.
+- WebAPI: Gebruik van WebAPI Geolocation voor het verkijgen van huidige locatie van de gebruiker.
 
 ## Installatie en gebruik
 

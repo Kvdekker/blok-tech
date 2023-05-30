@@ -432,6 +432,15 @@ legend {
 }
 
 .user_main section:nth-child(2) {
+  border: solid 3px $buttoncolor;
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.user_main section:nth-child(3) {
   background-color: $buttoncolor;
   color: $hoofdtekstcolor;
   h2 {
@@ -446,7 +455,7 @@ legend {
     align-items: center;
   }
 }
-.user_main section:nth-child(3) {
+.user_main section:nth-child(4) {
   background-color: $deletecolor;
   color: $hoofdtekstcolorfont;
   h2 {

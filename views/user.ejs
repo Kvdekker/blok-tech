@@ -13,10 +13,13 @@
         <section>
           <% if (isLoggedIn) { %>
           <h1>Hallo, <%= username %>!</h1>
+          <p>Locatie: <span id="userLocation"></span></p>
           <% } else { %>
           <h1>Hallo, gebruiker!</h1>
           <% } %>
+        </section>
 
+        <section>
           <h2>Log uit</h2>
           <p>Klik hieronder om uit te loggen.</p>
           <% if (isLoggedIn) { %>
@@ -55,6 +58,6 @@
     </main>
 
     <footer><%- include ('partials/footer.ejs') %></footer>
+    <%- include ('script.ejs') %>
   </body>
-  <%- include ('script.ejs') %>
 </html>

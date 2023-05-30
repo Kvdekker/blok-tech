@@ -1,7 +1,8 @@
 console.log("Script geladen");
-const zoekKnop = document.getElementById("searchButton");
 
+//Zoekfucntie op de homepagina
 document.addEventListener("DOMContentLoaded", function () {
+  const zoekKnop = document.getElementById("searchButton");
   // Wachten tot het DOM is geladen voordat de code wordt uitgevoerd
   console.log("DOMContentLoaded event afgevuurd");
 
@@ -32,4 +33,25 @@ selected.forEach(function (selected) {
       this.classList.remove("is_selected");
     }
   });
+});
+
+// Locatie via Geolocation API
+document.addEventListener("DOMContentLoaded", function () {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showUserLocation);
+  } else {
+    console.log("Geolocation wordt niet ondersteund door de huidige browser.");
+  }
+
+  function showUserLocation(position) {
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+
+    const locationElement = document.getElementById("userLocation");
+    if (locationElement) {
+      locationElement.textContent = `${latitude}, ${longitude}`;
+    } else {
+      console.log("Element met id 'userLocation' niet gevonden.");
+    }
+  }
 });
