@@ -9,6 +9,9 @@
 body {
   color: rgb(48, 48, 48);
   position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 /* Begin navbar */
@@ -61,6 +64,10 @@ nav {
 .user {
   grid-column: 1;
   grid-row: 1/span 2;
+}
+
+main {
+  flex: 1;
 }
 
 h2 {
@@ -318,15 +325,16 @@ legend {
 
 .user_main section {
   display: flex;
-  align-items: center;
   text-align: center;
+  margin: 1.5em 20vw;
+  padding: 1em;
   flex-direction: column;
 }
 .user_main section h1 {
   font-size: 40px;
 }
 .user_main section h2 {
-  margin: 0em 1em 0em 1em;
+  margin: 0.5em auto;
   font-size: 30px;
   color: rgb(45, 45, 45);
 }
@@ -339,10 +347,14 @@ legend {
   padding: 0.5em 1em 0.2em 1em;
 }
 
+@media (max-width: 500px) {
+  .user_main section {
+    margin: 1.5em 5vw;
+  }
+}
 .user_main section:nth-child(2) {
   background-color: #007bff;
   color: rgb(45, 45, 45);
-  padding: 1em;
 }
 .user_main section:nth-child(2) h2 {
   color: white;
@@ -350,11 +362,15 @@ legend {
 .user_main section:nth-child(2) input {
   margin-top: 1em;
 }
+.user_main section:nth-child(2) form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 .user_main section:nth-child(3) {
   background-color: rgb(75, 0, 0);
   color: white;
-  padding: 1em;
 }
 .user_main section:nth-child(3) h2 {
   color: white;
@@ -366,13 +382,14 @@ legend {
   align-items: center;
 }
 .user_main .delete_form button {
-  margin-top: 1em;
+  margin: 1em auto;
   padding: 0.5em 1em;
   border-radius: 10px;
   border: none;
   font-weight: bold;
   background-color: rgb(255, 0, 0);
   color: white;
+  min-width: 246.8px;
 }
 
 /* De dropdownmenus */
@@ -403,7 +420,7 @@ label {
 .button_whiteborder {
   display: block;
   width: 100%;
-  padding: 10px 20px;
+  padding: 0.5em 1em;
   margin: 1em auto;
   border: 2px solid white;
   border-radius: 10px;
@@ -413,13 +430,22 @@ label {
   text-decoration: none;
 }
 
+.button_whiteborder2 {
+  margin: 1em auto;
+  padding: 0.5em 1em;
+  border-radius: 10px;
+  border: 3px solid white;
+  background-color: #007bff;
+  color: white;
+  min-width: 246.8px;
+}
+
 /* Footer */
 footer {
   background-color: rgb(45, 45, 45);
-  padding: 1em 2em 1em 2em;
-  position: relative;
+  padding: 1em 2em;
   width: 100%;
-  bottom: 0;
+  flex-shrink: 0;
 }
 footer p {
   color: rgb(255, 255, 255);

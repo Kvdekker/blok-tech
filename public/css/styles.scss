@@ -26,7 +26,9 @@ $green: rgb(0, 220, 0);
 body {
   color: $fontcolor;
   position: relative;
-  // min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 /* Begin navbar */
@@ -90,6 +92,9 @@ nav {
 }
 
 // Algemeen
+main {
+  flex: 1;
+}
 h2 {
   font-size: 40px;
   color: $hoofdtekstcolorfont;
@@ -393,8 +398,9 @@ legend {
 }
 .user_main section {
   display: flex;
-  align-items: center;
   text-align: center;
+  margin: 1.5em 20vw;
+  padding: 1em;
 
   flex-direction: column;
 
@@ -403,7 +409,7 @@ legend {
   }
 
   h2 {
-    margin: 0em 1em 0em 1em;
+    margin: 0.5em auto;
     font-size: 30px;
     color: $footercolor;
   }
@@ -418,21 +424,31 @@ legend {
     padding: 0.5em 1em 0.2em 1em;
   }
 }
+
+@media (max-width: 500px) {
+  .user_main section {
+    margin: 1.5em 5vw;
+  }
+}
+
 .user_main section:nth-child(2) {
   background-color: $buttoncolor;
   color: $hoofdtekstcolor;
-  padding: 1em;
   h2 {
     color: $hoofdtekstcolorfont;
   }
   input {
     margin-top: 1em;
   }
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 .user_main section:nth-child(3) {
   background-color: $deletecolor;
   color: $hoofdtekstcolorfont;
-  padding: 1em;
   h2 {
     color: $hoofdtekstcolorfont;
   }
@@ -443,13 +459,14 @@ legend {
   align-items: center;
 
   button {
-    margin-top: 1em;
+    margin: 1em auto;
     padding: 0.5em 1em;
     border-radius: 10px;
     border: none;
     font-weight: bold;
     background-color: $red;
     color: $hoofdtekstcolorfont;
+    min-width: 246.8px;
   }
 }
 
@@ -485,7 +502,7 @@ label {
   display: block;
 
   width: 100%;
-  padding: 10px 20px;
+  padding: 0.5em 1em;
   margin: 1em auto;
 
   border: 2px solid white;
@@ -497,16 +514,22 @@ label {
   text-decoration: none;
 }
 
+.button_whiteborder2 {
+  margin: 1em auto;
+  padding: 0.5em 1em;
+  border-radius: 10px;
+  border: 3px solid white;
+  background-color: $buttoncolor;
+  color: $hoofdtekstcolorfont;
+  min-width: 246.8px;
+}
+
 /* Footer */
 footer {
   background-color: $footercolor;
-
-  padding: 1em 2em 1em 2em;
-
-  position: relative;
+  padding: 1em 2em;
   width: 100%;
-
-  bottom: 0;
+  flex-shrink: 0;
 
   p {
     color: $footerfontcolor;

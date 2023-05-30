@@ -120,7 +120,7 @@ app.post("/user/delete", async (req, res) => {
       .send("Er is een fout opgetreden bij het verwijderen van het account"); // Foutbericht weergeven als er een fout optreedt
   }
 });
-app.post("/user/update-username", async (req, res) => {
+app.post("/user/update-username", async (req, res, next) => {
   // Endpoint voor het bijwerken van de username via een POST-verzoek
   const username = req.session.username;
   // De huidige username wordt opgehaald uit de sessie
@@ -145,12 +145,15 @@ app.post("/user/update-username", async (req, res) => {
     res.redirect("/user");
     // De gebruiker wordt doorgestuurd naar de "user" pagina
   } catch (error) {
-    console.error(error);
-    res
-      .status(500)
-      .send("Er is een fout opgetreden bij het bijwerken van de username");
-    // Als er een fout optreedt, wordt een foutstatus verzonden met een foutbericht
+    next(error);
+    // De fout wordt doorgegeven aan de volgende middleware (fallback-functie)
   }
+});
+
+// Fallback-functie voor error
+app.use(function (err, req, res, next) {
+  console.error(err);
+  res.status(500).send("Er is een interne serverfout opgetreden.");
 });
 
 // Register routes
