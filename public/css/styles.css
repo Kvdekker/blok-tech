@@ -1,15 +1,30 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 * {
   margin: 0;
   padding: 0;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  font-family: Montserrat, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: Montserrat, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    sans-serif;
   font-size: 20px;
 }
 
 body {
   color: rgb(48, 48, 48);
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
   min-height: 100vh;
 }
@@ -25,11 +40,17 @@ header {
 nav {
   padding: 1em 2em;
   height: 80px;
+  display: -ms-grid;
   display: grid;
+  -ms-grid-columns: auto auto;
   grid-template-columns: auto auto;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   background-color: rgb(45, 45, 45);
   position: relative;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 
@@ -41,6 +62,7 @@ nav {
 .nav_buttons img {
   width: 1.7em;
   height: 1.7em;
+  -webkit-filter: invert(1);
   filter: invert(1);
 }
 .nav_buttons a {
@@ -49,7 +71,9 @@ nav {
 }
 
 .logo {
+  -ms-grid-column-align: start;
   justify-self: start;
+  -webkit-filter: invert(1);
   filter: invert(1);
   width: 10em;
 }
@@ -62,11 +86,16 @@ nav {
 }
 
 .user {
+  -ms-grid-column: 1;
   grid-column: 1;
-  grid-row: 1/span 2;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
+  grid-row: 1 / span 2;
 }
 
 main {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
   flex: 1;
 }
 
@@ -78,7 +107,12 @@ h2 {
 /* Begin main */
 .index_main {
   padding-top: 3em;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
   background-image: url("/images/car1.png");
   background-size: auto auto;
@@ -89,6 +123,7 @@ h2 {
   padding: 1em;
   background: #007bff;
   height: -moz-fit-content;
+  height: -webkit-fit-content;
   height: fit-content;
   border-radius: 20px;
 }
@@ -98,11 +133,17 @@ h2 {
   color: rgb(255, 255, 255);
 }
 .index_main article section {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
 }
 .index_main article:nth-of-type(2) {
   width: -moz-fit-content;
+  width: -webkit-fit-content;
   width: fit-content;
   margin: 3em 20px;
 }
@@ -117,6 +158,9 @@ h2 {
 
 @media (min-width: 500px) {
   .index_main {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    -ms-flex-direction: row-reverse;
     flex-direction: row-reverse;
   }
   .index_main article {
@@ -134,7 +178,11 @@ h2 {
   }
   .index_main article section:first-of-type {
     margin: 1em auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
     align-items: flex-start;
   }
 }
@@ -155,7 +203,31 @@ legend {
 .carlist-main {
   background-color: #ffffff;
   opacity: 1;
-  background: linear-gradient(135deg, rgba(0, 141, 255, 0.3333333333) 25%, transparent 25%) -40px 0/80px 80px, linear-gradient(225deg, #008dff 25%, transparent 25%) -40px 0/80px 80px, linear-gradient(315deg, rgba(0, 141, 255, 0.3333333333) 25%, transparent 25%) 0px 0/80px 80px, linear-gradient(45deg, #008dff 25%, #ffffff 25%) 0px 0/80px 80px;
+  background: -o-linear-gradient(
+        315deg,
+        rgba(0, 141, 255, 0.3333333333) 25%,
+        transparent 25%
+      ) -40px 0/80px 80px,
+    -o-linear-gradient(225deg, #008dff 25%, transparent 25%) -40px 0/80px 80px,
+    -o-linear-gradient(
+        135deg,
+        rgba(0, 141, 255, 0.3333333333) 25%,
+        transparent 25%
+      ) 0px 0/80px 80px,
+    -o-linear-gradient(45deg, #008dff 25%, #ffffff 25%) 0px 0/80px 80px;
+  background: linear-gradient(
+        135deg,
+        rgba(0, 141, 255, 0.3333333333) 25%,
+        transparent 25%
+      ) -40px 0/80px 80px,
+    linear-gradient(225deg, #008dff 25%, transparent 25%) -40px 0/80px 80px,
+    linear-gradient(
+        315deg,
+        rgba(0, 141, 255, 0.3333333333) 25%,
+        transparent 25%
+      )
+      0px 0/80px 80px,
+    linear-gradient(45deg, #008dff 25%, #ffffff 25%) 0px 0/80px 80px;
 }
 
 .carlist-main article {
@@ -172,9 +244,18 @@ legend {
 }
 
 .carlist-listitem {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
   align-items: flex-start;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
   list-style: none;
   margin-bottom: 1em;
@@ -189,7 +270,9 @@ legend {
 
 @media (min-width: 500px) {
   .carlist-main article section {
+    display: -ms-grid;
     display: grid;
+    -ms-grid-columns: 1fr 1em 1fr;
     grid-template-columns: 1fr 1fr;
     grid-gap: 1em;
   }
@@ -199,14 +282,18 @@ legend {
     margin: 1em 10em 0em 10em;
   }
   .carlist-main article section {
+    display: -ms-grid;
     display: grid;
+    -ms-grid-columns: 1fr 1em 1fr;
     grid-template-columns: 1fr 1fr;
     grid-gap: 1em;
   }
 }
 @media (min-width: 1200px) {
   .carlist-main article section {
+    display: -ms-grid;
     display: grid;
+    -ms-grid-columns: 1fr 1em 1fr;
     grid-template-columns: 1fr 1fr;
   }
 }
@@ -223,7 +310,12 @@ legend {
 .login_main form {
   background-color: #007bff;
   border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
   margin: 10em 0.5em 20em 0.5em;
   padding: 2em;
@@ -236,6 +328,8 @@ legend {
   color: white;
 }
 .login_main a {
+  -ms-flex-item-align: center;
+  -ms-grid-row-align: center;
   align-self: center;
   color: white;
 }
@@ -256,7 +350,12 @@ legend {
 .register_main form {
   background-color: #007bff;
   border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
   margin: 10em 0.5em 20em 0.5em;
   padding: 2em;
@@ -270,11 +369,15 @@ legend {
   font-size: 30px;
 }
 .register_main a {
+  -ms-flex-item-align: center;
+  -ms-grid-row-align: center;
   align-self: center;
   color: white;
 }
 .register_main p {
   color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 .register_main i {
@@ -324,10 +427,15 @@ legend {
 }
 
 .user_main section {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   text-align: center;
   margin: 1.5em 20vw;
   padding: 1em;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
 }
 .user_main section h1 {
@@ -339,8 +447,15 @@ legend {
   color: rgb(45, 45, 45);
 }
 .user_main section article {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 .user_main section p {
@@ -356,8 +471,15 @@ legend {
   border: solid 3px #007bff;
 }
 .user_main section:nth-child(2) form {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -372,8 +494,15 @@ legend {
   margin-top: 1em;
 }
 .user_main section:nth-child(3) form {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -386,8 +515,15 @@ legend {
 }
 
 .user_main .delete_form {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 .user_main .delete_form button {
@@ -454,6 +590,7 @@ footer {
   background-color: rgb(45, 45, 45);
   padding: 1em 2em;
   width: 100%;
+  -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 footer p {
@@ -463,4 +600,4 @@ footer p {
 footer a {
   color: rgb(255, 255, 255);
   font-size: 15px;
-}/*# sourceMappingURL=styles.css.map */
+}
