@@ -89,7 +89,7 @@ app.post("/login", async (req, res) => {
     }
 
     res.render("login", {
-      loginFailed: "Deze username en/of password is onjuist!", // Foutbericht weergeven op de loginpagina
+      loginFailed: "Deze gebruikersnaam en/of wachtwoord is onjuist!", // Foutbericht weergeven op de loginpagina
     });
   } catch (error) {
     console.error(error);
@@ -170,7 +170,7 @@ app.post("/register", async (req, res) => {
 
     if (existingUser) {
       return res.render("register", {
-        userExistsMessage: "Deze user bestaat al!", // Foutbericht weergeven op de registratiepagina
+        userExistsMessage: "Deze gebruiker bestaat al!", // Foutbericht weergeven op de registratiepagina
         successMessage: "",
       });
     }
